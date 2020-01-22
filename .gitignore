@@ -1,0 +1,34 @@
+biofits-frontend/node_modules
+
+biofits-backend/HELP.md
+biofits-backend/target/
+biofits-backend/bin/
+biofits-backend/logs/
+biofits-backend/tmp/
+!.mvn/wrapper/maven-wrapper.jar
+
+### STS ###
+biofits-backend/.apt_generated
+biofits-backend/.classpath
+biofits-backend/.factorypath
+biofits-backend/.project
+biofits-backend/.settings
+biofits-backend/.springBeans
+biofits-backend/.sts4-cache
+
+### IntelliJ IDEA ###
+biofits-backend/.idea
+biofits-backend/*.iws
+biofits-backend/*.iml
+biofits-backend/*.ipr
+
+### NetBeans ###
+biofits-backend/nbproject/private/
+biofits-backend/nbbuild/
+biofits-backend/dist/
+biofits-backend/nbdist/
+biofits-backend/.nb-gradle/
+biofits-backend/build/
+
+### VS Code ###
+biofits-backend/.vscode/

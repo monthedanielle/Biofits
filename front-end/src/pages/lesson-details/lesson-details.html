@@ -6,45 +6,12 @@
 </ion-header>
 
 <ion-content>
-  <div class="imgBg" style="background-image:url(assets/img/cources/003.png)"></div>
-  <!-- grid for rating, like,share and course time-->
-  <ion-grid>
-    <ion-row>
-      <ion-col col-5>
-        <rating [(ngModel)]="rate" class="ratingGroup"  
-          readOnly="false" 
-          max="5" 
-          emptyStarIconName="ios-star-outline" 
-          starIconName="ios-star" 
-          nullable="false" 
-          ></rating>
-      </ion-col>
-        <ion-col col-2  >
-          <button ion-button icon-only class="like_btn" margin-auto (click)="click_like()">
-            <ion-icon name="md-heart" [color]="heart_color"></ion-icon>  
-          </button>
-        </ion-col>
-        <ion-col col-2 >
-          <ion-fab margin-auto>
-            <button ion-fab><ion-icon name="md-share" color="color4"></ion-icon></button>
-            <ion-fab-list side="top">
-              <button ion-fab color="faceColor"><ion-icon name="logo-facebook"></ion-icon></button>
-              <button ion-fab color="twitterColor"><ion-icon name="logo-twitter"></ion-icon></button>
-              <button ion-fab color="googleColor"><ion-icon name="logo-googleplus"></ion-icon></button>
-            </ion-fab-list>
-          </ion-fab>
-        </ion-col>
-        <ion-col col-3>
-          <ion-icon name="md-time" color="color2"></ion-icon>
-          <p>120h</p>
-        </ion-col>
-    </ion-row>
-  </ion-grid>
+  <div class="imgBg" [ngStyle]="{'background-image': sportArt.picture}"></div>
     <!-- course Details -->
   <div class="details">
-    <h5>Description</h5>
+    <h5>Beschreibung</h5>
     <p>
-      It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English.
+      {{ sportArt.description }}
     </p>
     <!-- list of cours contain -->
     <ion-list class="course_list">

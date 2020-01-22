@@ -18,7 +18,6 @@ export class SportArtProvider {
     
   }
 
-
   public list() {
     const headers = new HttpHeaders({
       Authorization: 'Bearer ' + localStorage.getItem('access_token')
@@ -26,4 +25,37 @@ export class SportArtProvider {
 
     return this.http.get<any>(this.envProvider.SPORT_ART_PATH, { headers });
   }
+
+  public get(id: any) {
+    const headers = new HttpHeaders({
+      Authorization: 'Bearer ' + localStorage.getItem('access_token')
+    });
+
+    return this.http.get<any>(Strings.format(this.envProvider.SPORT_ART_ITEM, id), { headers });
+  }
+
+  public current(benutzerId: any, sportArtId: any) {
+    const headers = new HttpHeaders({
+      Authorization: 'Bearer ' + localStorage.getItem('access_token')
+    });
+
+    return this.http.post<any>(Strings.format(this.envProvider.CURRENT_AKTIVITAET, benutzerId, sportArtId), {}, { headers });
+  }
+
+  public createSnapshot(benutzerId: any, sportArtId: any, snapshots: any[]) {
+    const headers = new HttpHeaders({
+      Authorization: 'Bearer ' + localStorage.getItem('access_token')
+    });
+
+    return this.http.post<any>(Strings.format(this.envProvider.SNAPSHOT_AKTIVITAET, benutzerId, sportArtId), snapshots, { headers });
+  }
+
+  public stop(benutzerId: any, sportArtId: any) {
+    const headers = new HttpHeaders({
+      Authorization: 'Bearer ' + localStorage.getItem('access_token')
+    });
+
+    return this.http.put<any>(Strings.format(this.envProvider.STOP_AKTIVITAET, benutzerId, sportArtId), {}, { headers });
+  }
+  
 }

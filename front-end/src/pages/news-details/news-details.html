@@ -1,95 +1,34 @@
-
 <ion-header>
   <ion-navbar>
     <ion-title>Details</ion-title>
   </ion-navbar>
 </ion-header>
 <ion-content>
-  <div class="details_img" style="background-image:url(assets/img/news/004.png)">
+  <div class="details_img" [ngStyle]="{'background-image': sportArt.picture}">
     <ion-item>
-      <h4>Title one of 1st Article</h4>
-      <ion-grid >
-        <ion-row>
-          <ion-col col-auto>
-            <p>
-              <ion-icon name="ios-eye" color="color2"></ion-icon>
-              120
-            </p>
-          </ion-col>
-          <ion-col col>
-            <p (click)="click_like()">
-              <ion-icon name="ios-heart" color="{{heart_color}}"></ion-icon>
-              {{num_clicked}}
-            </p>
-          </ion-col>
-        </ion-row>
-      </ion-grid>
-      <div item-right class="btns_div">
-        <button ion-button class="mark_btn" color="color1" (click)="marked()">
-          <ion-icon name="ios-star"  [ngClass]="{'active':click_mark==true}"></ion-icon>
-        </button>
-        <ion-fab>
-          <button ion-fab color="color1"><ion-icon name="md-share"></ion-icon></button>
-          <ion-fab-list side="left">
-            <button ion-fab color="faceColor"><ion-icon name="logo-facebook"></ion-icon></button>
-            <button ion-fab color="twitterColor"><ion-icon name="logo-twitter"></ion-icon></button>
-            <button ion-fab color="googleColor"><ion-icon name="logo-googleplus"></ion-icon></button>
-          </ion-fab-list>
-        </ion-fab>
-      </div>
+      <h4>{{ sportArt.name }}</h4>
     </ion-item>
   </div>
 
   <!-- details -->
   <div class="details">
-    <ion-grid>
-      <ion-row>
-        <ion-col col-6>
-          <p>
-            <span float-left>Write : </span>
-            Martin Adam
-          </p>
-        </ion-col>
-        <ion-col col-6>
-          <p text-right>
-            <span>22 Oct,2017</span>
-            <span padding-left float-right>10AM</span>
-          </p>
-        </ion-col>
-      </ion-row>
-    </ion-grid>
     <p class="description">
-      is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+      {{ sportArt.description }}
     </p>
     <div class="comments">
-      <ion-list>
-        <ion-item>
-          <ion-avatar item-left>
-            <img src="assets/img/user1.png">
-          </ion-avatar>
-          <ion-grid>
-            <ion-row>
-              <ion-col col-6>
-                <p>
-                  Adam Jone
-                </p>
-              </ion-col>
-              <ion-col col-6>
-                <p text-right>
-                  <span>23 Oct,</span>
-                  <span padding-left float-right>10AM</span>
-                </p>
-              </ion-col>
-            </ion-row>
-          </ion-grid>
-          <p>is simply dummy text of the printing and typesetting industry.</p>
-        </ion-item>
-        <ion-item *ngIf="show_comment==true">
-          <ion-textarea rows="2" placeholder="Write your Comment"></ion-textarea>
-        </ion-item>
-      </ion-list>
-      <button ion-button block color="color1" margin-top (click)="add_comment()">Comment</button>
+      <ion-card>
+        <ion-card-header>
+          <ion-card-title>Ziel: {{ currentActivity.ziel }} Meters</ion-card-title>
+        </ion-card-header>
+        <ion-card-content>
+          <circle-progress [percent]="currentActivity.distanz / currentActivity.ziel" [radius]="100" [outerStrokeWidth]="16" [innerStrokeWidth]="8"
+            [outerStrokeColor]="'#78C000'" [innerStrokeColor]="'#C7E596'" [animation]="true" [animationDuration]="300">
+          </circle-progress>
+        </ion-card-content>
+      </ion-card>
+      <button ion-button block *ngIf="!started " color="secondary" margin-top (click)="start()">Starten</button>
+      <button ion-button block *ngIf="started " color="color2" margin-top (click)="stop()">Stoppen</button>
     </div>
   </div>
-  
+
 </ion-content>

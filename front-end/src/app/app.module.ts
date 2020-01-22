@@ -16,6 +16,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpModule } from '@angular/http';
 import { HTTP_INTERCEPTORS, HttpClientModule, HttpClient } from '@angular/common/http';
 import { SportArtProvider } from '../providers/sport-art/sport-art';
+import { Geolocation } from '@ionic-native/geolocation/ngx';
 
 var config = {
       backButtonText: '',
@@ -35,7 +36,7 @@ var config = {
     IonicModule.forRoot(MyApp,config),
     HttpModule,
     HttpClientModule,
-    BrowserAnimationsModule,
+    BrowserAnimationsModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [

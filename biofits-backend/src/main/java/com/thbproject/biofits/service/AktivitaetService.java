@@ -212,6 +212,51 @@ public class AktivitaetService {
         }
     }
 
+    public Aktivitaet current(
+            Long benutzerId,
+            Long sportArtId) {
+
+        // create the new benutzer
+        Benutzer benutzer = findBenutzer(benutzerId);
+
+        SportArt sportArt = findSportArt(sportArtId);
+
+        Date date = new Date();
+
+        List<Aktivitaet> aktivitaeten = aktivitaetRepository.findByBenutzerIdAndSportArtIdOrderByStartDatumAsc(benutzerId,
+                sportArtId);
+
+        // check if activity runs
+        Aktivitaet aktivitaet;
+
+        if (aktivitaeten.isEmpty()) {
+            aktivitaet = new Aktivitaet();
+            aktivitaet.setBenutzer(benutzer);
+            aktivitaet.setSportArt(sportArt);
+            aktivitaet.setDistanz((double) 0);
+            aktivitaet.setStartDatum(new Date());
+            aktivitaet.setEndDatum(DateUtils.addSeconds(aktivitaet.getStartDatum(), settings.getActivityDuration()));
+            aktivitaet.setAktuelStartDatum(new Date());
+            aktivitaet.setAktuelEndDatum(null);
+            aktivitaet.setZiel(zielRechnungService.rechnen(benutzerId, sportArtId));
+        } else {
+            aktivitaet = aktivitaeten.get(0);
+            if (aktivitaet.getEndDatum().before(date)) {
+                aktivitaet = new Aktivitaet();
+                aktivitaet.setBenutzer(benutzer);
+                aktivitaet.setSportArt(sportArt);
+                aktivitaet.setDistanz((double) 0);
+                aktivitaet.setStartDatum(new Date());
+                aktivitaet.setEndDatum(DateUtils.addSeconds(aktivitaet.getStartDatum(), settings.getActivityDuration()));
+                aktivitaet.setAktuelStartDatum(new Date());
+                aktivitaet.setAktuelEndDatum(null);
+                aktivitaet.setZiel(zielRechnungService.rechnen(benutzerId, sportArtId));
+            }
+        }
+
+        return aktivitaet;
+    }
+
     private Benutzer findBenutzer(Long id) {
         // find benutzer
         Benutzer benutzer = benutzerRepository.findOne(id);

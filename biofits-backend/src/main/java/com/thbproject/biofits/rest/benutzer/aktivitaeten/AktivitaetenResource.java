@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.fasterxml.jackson.databind.JsonNode;
+import com.thbproject.biofits.model.Aktivitaet;
 import com.thbproject.biofits.model.AktivitaetSnapshot;
 import com.thbproject.biofits.rest.ApiConstants;
 import com.thbproject.biofits.search.aktivitaet.AktivitaetCriteria;
@@ -40,12 +41,12 @@ public class AktivitaetenResource {
     @Autowired
     private AktivitaetService aktivitaetService;
 
-    @RequestMapping(method = RequestMethod.POST, path = "/snapshots")
+    @RequestMapping(method = RequestMethod.POST, path = "/sport-art/{sportArtId}/snapshots")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     public List<AktivitaetSnapshot> createSnapshot(
             @PathVariable("benutzerId") Long benutzerId,
-            @QueryParam("sportArtId") Long sportArtId,
+            @PathVariable("sportArtId") Long sportArtId,
             @RequestBody @Valid List<AktivitaetSnapshotWrite> snapshots) {
         log.info("create aktivitaet snapshots");
         // create
@@ -55,28 +56,43 @@ public class AktivitaetenResource {
                 snapshots);
     }
 
-    @RequestMapping(method = RequestMethod.POST)
+    @RequestMapping(method = RequestMethod.POST, path = "/sport-art/{sportArtId}/current")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public List<AktivitaetSnapshot> stop(
+    public Aktivitaet getCurrent(
             @PathVariable("benutzerId") Long benutzerId,
-            @QueryParam("sportArtId") Long sportArtId,
-            @RequestBody @Valid List<AktivitaetSnapshotWrite> snapshots) {
-        log.info("create aktivitaet snapshots");
-        // create
-        return aktivitaetSnapshotService.create(
+            @PathVariable("sportArtId") Long sportArtId) {
+        log.info("get current aktivitaet");
+
+        return aktivitaetService.current(
                 benutzerId,
-                sportArtId,
-                snapshots);
+                sportArtId);
     }
 
-    @RequestMapping(method = RequestMethod.GET)
+    @RequestMapping(path = "/sport-art/{sportArtId}/stop", method = RequestMethod.PUT)
+    @Consumes(MediaType.APPLICATION_JSON)
+    public void stop(
+            @PathVariable("benutzerId") Long benutzerId,
+            @PathVariable("sportArtId") Long sportArtId) {
+        log.info("stop aktivitaet");
+
+        aktivitaetService.stop(benutzerId, sportArtId);
+    }
+
+    @RequestMapping(path = "/sport-art/{sportArtId}/list", method = RequestMethod.GET)
     @Produces(MediaType.APPLICATION_JSON)
     public JsonNode list(
             @RequestBody @Valid AktivitaetCriteria criteria,
-            @QueryParam("aggregateBySportArt") Long sportArtId,
-            @QueryParam("aggregateByPeriod") String period) {
+            @PathVariable("benutzerId") Long benutzerId,
+            @PathVariable("sportArtId") Long sportArtId,
+            @QueryParam("period") String period) {
         log.info("list all aktivitaeten");
+
+        if (criteria == null) {
+            criteria = new AktivitaetCriteria();
+        }
+
+        criteria.setBenutzerId(benutzerId);
 
         return aktivitaetService.list(criteria, sportArtId, period);
 

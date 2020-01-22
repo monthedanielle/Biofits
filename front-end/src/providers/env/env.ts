@@ -21,6 +21,10 @@ export class EnvProvider {
   public BENUTZER_BY_EMAIL = this.HOST + '/benutzer/by-email/{0}/';
   public CURRENT_USER = this.HOST + '/current-benutzer';
   public SPORT_ART_PATH = this.HOST + '/sport-arten';
+  public SPORT_ART_ITEM = this.SPORT_ART_PATH + '/{0}';
+  public SNAPSHOT_AKTIVITAET = this.BENUTZER_ITEM + '/aktivitaeten/sport-art/{1}/snapshots';
+  public STOP_AKTIVITAET = this.BENUTZER_ITEM + '/aktivitaeten/sport-art/{1}/stop';
+  public CURRENT_AKTIVITAET = this.BENUTZER_ITEM + '/aktivitaeten/sport-art/{1}/current';
 
   public LANGUAGES = [
     {

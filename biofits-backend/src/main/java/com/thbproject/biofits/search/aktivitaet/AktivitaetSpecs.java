@@ -42,14 +42,14 @@ public class AktivitaetSpecs implements Specification<Aktivitaet> {
             Date date = new Date();
 
             predicates.add(cb.and(
-                    cb.greaterThanOrEqualTo(root.get(Aktivitaet_.startDatum), date),
-                    cb.lessThanOrEqualTo(root.get(Aktivitaet_.endDatum), date)));
+                    cb.lessThanOrEqualTo(root.get(Aktivitaet_.startDatum), date),
+                    cb.greaterThanOrEqualTo(root.get(Aktivitaet_.endDatum), date)));
         }
 
         if (criteria.getDate() != null) {
             predicates.add(cb.and(
-                    cb.greaterThanOrEqualTo(root.get(Aktivitaet_.startDatum), criteria.getDate()),
-                    cb.lessThanOrEqualTo(root.get(Aktivitaet_.endDatum), criteria.getDate())));
+                    cb.lessThanOrEqualTo(root.get(Aktivitaet_.startDatum), criteria.getDate()),
+                    cb.greaterThanOrEqualTo(root.get(Aktivitaet_.endDatum), criteria.getDate())));
         }
 
         if (criteria.getSportArtId() != null) {

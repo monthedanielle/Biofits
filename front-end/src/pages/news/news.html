@@ -16,7 +16,7 @@
 <ion-content >
   <ion-grid>
     <ion-row>
-      <ion-col col-12 col-md-6 col-lg-4 col-xl-3 *ngFor="let item of sportArten" navPush='NewsDetailsPage'>
+      <ion-col col-12 col-md-6 col-lg-4 col-xl-3 *ngFor="let item of sportArten" navPush='NewsDetailsPage' [navParams]="item">
         <ion-item>
           <ion-thumbnail item-start>
             <img src="{{item.picture}}">

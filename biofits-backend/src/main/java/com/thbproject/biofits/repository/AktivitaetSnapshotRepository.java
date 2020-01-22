@@ -1,0 +1,14 @@
+package com.thbproject.biofits.repository;
+
+import java.util.List;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
+
+import com.thbproject.biofits.model.AktivitaetSnapshot;
+
+public interface AktivitaetSnapshotRepository
+        extends JpaRepository<AktivitaetSnapshot, Long>, JpaSpecificationExecutor<AktivitaetSnapshot> {
+
+    List<AktivitaetSnapshot> findByAktivitaetIdOrderByDatumDesc(Long aktivitaetId);
+}

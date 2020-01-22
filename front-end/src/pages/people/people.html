@@ -1,0 +1,55 @@
+
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle icon-only>
+      <ion-icon name="ios-menu"></ion-icon>
+    </button>
+    <ion-title>people</ion-title>
+    <ion-buttons end>
+      <button ion-button navPush="NotificationsPage" class="notification_Btn" >
+        <ion-icon name="ios-notifications"></ion-icon>
+        <ion-badge color="danger">2</ion-badge>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+<ion-content >
+  <div padding>
+    <ion-searchbar [(ngModel)]="search"></ion-searchbar>
+    <p class="tip" *ngIf="search == undefined || search ==''">
+      Search tip : You can Search by part or all of a person`s name, email address or Phone number.
+    </p>
+  </div>
+  <!-- list of main contacts -->
+  <ion-list class="contact_List" *ngIf="search == undefined || search ==''">
+    <ion-list-header>
+      Main Contacts
+    </ion-list-header>
+    <!-- Genral Direction Item -->
+    <ion-item> 
+      <ion-icon name="ios-call" color="color2" item-right></ion-icon>
+      <p class="tit">General Directory</p>
+      <p>123-456-789</p>
+    </ion-item>
+      <!-- Student Direction Item -->
+    <ion-item> 
+      <ion-icon name="ios-call" color="color2" item-right></ion-icon>
+      <p class="tit">Student Directory</p>
+      <p>123-456-789</p>
+    </ion-item>
+      <!-- Faculty Direction Item -->
+    <ion-item> 
+      <ion-icon name="ios-call" color="color2" item-right></ion-icon>
+      <p class="tit">Faculty/Staff Directory</p>
+      <p>123-456-789</p>
+    </ion-item>
+  </ion-list>
+
+    <!-- list of Search name -->
+  <ion-list class="search_name_list" *ngIf=" search != undefined && search != '' ">
+    <ion-item *ngFor="let item of names" navPush='PeopleDetailsPage'> 
+      <p class="tit">{{item}}</p>
+    </ion-item>
+  </ion-list>
+
+</ion-content>

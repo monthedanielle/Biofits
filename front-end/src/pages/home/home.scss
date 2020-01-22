@@ -1,0 +1,26 @@
+page-home {
+    .grid{
+        padding:$content-padding/2;
+        .col{
+            padding:$content-padding/2;
+            .button{
+                border-radius:0px;
+            }
+        }
+        .container{
+            background-color: color($colors,color1);
+            height:100px;
+            padding:10px;
+            text-align: center;
+            img{
+                @include borderRadius(60px);
+                background-color:rgba(0,0,0,.3);
+            }
+            p{
+                margin:0px;
+                @include whiteNoWrap(20px);
+                color:color($colors,light);
+            }
+        }
+    }
+}

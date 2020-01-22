@@ -1,0 +1,33 @@
+
+<ion-header>
+  <ion-navbar hideBackButton >
+    <button ion-button menuToggle icon-only>
+      <ion-icon name="ios-menu"></ion-icon>
+    </button>
+    <ion-title>Map</ion-title>
+    <ion-buttons end>
+      <button ion-button navPush="NotificationsPage" class="notification_Btn" >
+        <ion-icon name="ios-notifications"></ion-icon>
+        <ion-badge color="danger">2</ion-badge>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+<ion-content>
+  <ion-grid>
+    <ion-row>
+      <ion-col col>
+        <ion-searchbar></ion-searchbar>
+      </ion-col>
+      <ion-col col-auto>
+        <button ion-button class="mark_btn" (click)="bookmark()">
+          <ion-icon name="ios-star"  [ngClass]="{'active':bookmark_Click==true}"></ion-icon>
+        </button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <div class="map_cover">
+     <div class="map" #map id="map"> </div> 
+  </div>
+  
+</ion-content>

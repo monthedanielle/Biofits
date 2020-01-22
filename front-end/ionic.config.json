@@ -1,0 +1,7 @@
+{
+  "name": "biofits",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "ionic-angular"
+}

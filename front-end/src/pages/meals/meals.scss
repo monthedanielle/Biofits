@@ -1,0 +1,27 @@
+page-meals {
+    .grid{
+        &.meals{
+            @extend .lesson_grid;
+            .item{
+                border-radius:$control-radius;
+                ion-thumbnail{
+                    border-radius:$control-radius;
+                    overflow:hidden;
+                    height:100px;
+                    width:100px;
+                }
+                .item-inner{
+                    padding:$content-padding;
+                }
+                h4{
+                    @include whiteNormal(38px,2);
+                    color: color($colors,color1);
+                    font-weight:500;
+                }
+                p{
+                    @include whiteNormal(32px,2);
+                }
+            }
+        }
+    }
+}

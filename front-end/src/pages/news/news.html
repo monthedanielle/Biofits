@@ -1,0 +1,31 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle icon-only>
+      <ion-icon name="ios-menu"></ion-icon>
+    </button>
+    <ion-title>Aktivitäten</ion-title>
+    <ion-buttons end>
+      <button ion-button navPush="NotificationsPage" class="notification_Btn" >
+        <ion-icon name="ios-notifications"></ion-icon>
+        <ion-badge color="danger">2</ion-badge>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content >
+  <ion-grid>
+    <ion-row>
+      <ion-col col-12 col-md-6 col-lg-4 col-xl-3 *ngFor="let item of sportArten" navPush='NewsDetailsPage'>
+        <ion-item>
+          <ion-thumbnail item-start>
+            <img src="{{item.picture}}">
+          </ion-thumbnail>
+          <!-- leason name -->
+          <h5>{{item.name}}</h5>
+          <p class="description">{{item.description}}</p>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

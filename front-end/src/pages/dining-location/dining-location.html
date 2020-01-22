@@ -1,0 +1,112 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>Location Details</ion-title>
+    <ion-buttons end>
+      <button ion-button navPush="NotificationsPage" class="notification_Btn" >
+        <ion-icon name="ios-notifications"></ion-icon>
+        <ion-badge color="danger">2</ion-badge>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+<ion-content>
+
+  <ion-grid class="rest_info">
+    <ion-row>
+      <ion-col col-12>
+        <h4>Restaurant Name</h4>
+      </ion-col>
+      <ion-col col-6>
+        <p class="ser">Customer Service</p>
+      </ion-col>
+      <ion-col col-6>
+        <p float-right>
+          <ion-icon name="ios-call"></ion-icon>
+          123-456-789
+        </p>
+      </ion-col>
+      <ion-col col-6>
+        <button ion-button  navPush='MapPage' block color="color1" class="map_btn">
+          <ion-icon name="ios-pin"  ></ion-icon>
+          Veiw on Map
+        </button>
+      </ion-col>
+      <ion-col col-6>
+        <button ion-button block color="color1" (click)="bookmark()" class="mark_btn" >
+          <ion-icon name="ios-star" [ngClass]="{'active':bookmark_Click==true}" ></ion-icon>
+          Bookmark
+        </button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+    <!-- list of Dining Halls-->
+  <ion-list class="dining_List">
+    <!-- breakfast item -->
+    <ion-item  navPush='MealsPage'> 
+      <p class="tit">Breakfast</p>
+      <ion-grid>
+        <ion-row>
+          <ion-col col-auto>
+            <p>Tue,10 Oct.,2017</p>
+          </ion-col>
+          <ion-col col-auto>
+            <p padding-left>
+              <span>7:30</span> - <span>10:00</span>AM
+            </p>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-item>
+    <!-- lanch item -->
+    <ion-item  navPush='MealsPage'> 
+      <p class="tit">Lanch</p>
+      <ion-grid>
+        <ion-row>
+          <ion-col col-auto>
+            <p>Tue,10 Oct.,2017</p>
+          </ion-col>
+          <ion-col col-auto>
+            <p padding-left>
+              <span>7:30</span> - <span>10:00</span>AM
+            </p>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-item>
+    <!-- dinner item -->
+    <ion-item  navPush='MealsPage'>  
+      <p class="tit">Dinner</p>
+      <ion-grid>
+        <ion-row>
+          <ion-col col-auto>
+            <p  padding-right>Tue,10 Oct.,2017</p>
+          </ion-col>
+          <ion-col col-auto>
+            <p>
+              <span>7:30</span> - <span>10:00</span>AM
+            </p>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-item>
+
+  </ion-list>
+  <!-- Calendar  -->
+  <ion-grid class="calendar">
+    <ion-row>
+      <ion-col col-auto>
+        <ion-icon name="ios-arrow-back" color="light"  (click)="calendar_function('decrease')"></ion-icon>
+      </ion-col>
+      <ion-col col>
+        <p>
+          <span>{{day_name}}</span>,
+          <span>{{day_num}}</span>
+          <span>{{month_name}}</span>.,
+        </p>
+      </ion-col>
+      <ion-col col-auto>
+        <ion-icon name="ios-arrow-forward" color="light" (click)="calendar_function('increase')"></ion-icon>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

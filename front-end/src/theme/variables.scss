@@ -1,0 +1,161 @@
+// Ionic Variables and Theming. For more info, please see:
+// http://ionicframework.com/docs/theming/
+
+// Font path is used to include ionicons,
+// roboto, and noto sans fonts
+$font-path: "../assets/fonts";
+
+
+// The app direction is used to include
+// rtl styles in your app. For more info, please see:
+// http://ionicframework.com/docs/theming/rtl-support/
+$app-direction: ltr;
+
+
+@import "ionic.globals";
+
+
+// Shared Variables
+// --------------------------------------------------
+// To customize the look and feel of this app, you can override
+// the Sass variables found in Ionic's source scss files.
+// To view all the possible Ionic variables, see:
+// http://ionicframework.com/docs/theming/overriding-ionic-variables/
+
+
+
+
+$colors: (
+  primary:    #488aff,
+  secondary:  #32db64,
+  danger:     #e56353,
+  light:      #fff,
+  dark:       #000,
+  color1:     #026d9e,
+  color2:     #ff9500,
+  color3:     #e2e1dd, 
+  color4:     #939391,
+  color5:     #fcd462,
+  faceColor:  #3a5a98,
+  twitterColor: #89b8e2,
+  googleColor:  #ff5450,
+);
+
+$content-padding:8px;
+$content-margin:$content-padding;
+$control-height:44px;
+$control-radius:3px;
+
+// App  Variables
+$mainFont:1.3rem;
+ $appFonts:(h3:2.5rem,h4:$mainFont + .1,h5:$mainFont,p:$mainFont - .1);
+ @each $head , $fontSize in $appFonts {
+    #{$head}{
+      font-size:$fontSize!important;
+    } 
+ }
+
+// appForm variables
+$appForm_Item_Height:$control-height;
+$appForm_Item_Text_color:color($colors,color1);
+$appForm_icon_color:color($colors,color2);
+// $appForm_border_color:color($colors,color2);
+$appForm_border_radius:$control_radius;   
+$appForm_text_font_size:$mainFont - .1rem;
+$appForm_text_font_weight:500;
+
+$toolbar-ios-title-text-align:left;
+$text-input-placeholder-color:color($colors,color1);
+$item-ios-padding-top:0px;
+$text-input-ios-margin-right:0px;       
+$item-ios-padding-bottom:0px;
+$text-input-ios-margin-left:0px;
+
+//  select
+$select-ios-icon-color:color($colors,color1);
+$select-ios-placeholder-color:$text-input-placeholder-color;
+// button variables
+$button-ios-margin-top:$content-padding;
+$button-ios-margin-end:0px;
+$button-ios-margin-bottom:0px;
+$button-ios-margin-start:0px;
+$button-ios-padding-start:$content-padding;
+$button-ios-padding-end:$button-ios-padding-start;
+$button-ios-padding-bottom:0px;
+$button-ios-height:$control-height ;
+$button-ios-border-radius:$control-radius;  
+$button-ios-font-size:$mainFont - .1;
+$button-ios-text-color:color($colors,light);
+
+// header Variables
+$toolbar-ios-height:$control-height;
+$toolbar-ios-title-font-size:$mainFont;
+$toolbar-ios-title-font-weight:500;
+$toolbar-ios-title-text-color:color($colors,light);
+$nav_Bar_Padding:$content-padding/2;
+$header_icon_size:2.0rem; 
+$header_icon_color:$toolbar-ios-title-text-color;
+$toolBar_Back_Ground:color($colors,color1);
+
+
+// item thumnail in subCategories Variable
+$item-ios-thumbnail-width:85px;
+$item-ios-thumbnail-height:100px;
+$option_button_width:100px;
+
+// side menu Variables
+
+$menu-width:90%;
+$menu-small-width:$menu-width;
+$menu_item_height:34px;
+
+
+
+// Radio Variables
+$radioSize:24px;
+$radioRadius:50%;
+
+//search bar variables
+$searchbar-ios-input-search-icon-color:color($colors,color1);
+$searchbar-ios-input-search-icon-size:20px;
+$searchbar-ios-input-placeholder-color:color($colors,color1);
+$searchbar-ios-input-text-color:color($colors,color1);
+$searchbar-ios-input-clear-icon-color:color($colors,color2);
+$searchbar-ios-input-clear-icon-size:30px;
+$searchbar-input-background-color:color($colors,light);  
+
+// badges Variables
+$badge-font-size:1rem;
+$badge-font-weight:300;
+// checkbox variables
+$checkbox-ios-background-color-off:color($colors,color4);
+$checkbox-ios-background-color-on:color($colors,color4);
+$checkbox-ios-icon-size:16px;        
+$checkbox-ios-icon-border-width:0px;
+$checkbox-ios-icon-border-radius:2px;
+$checkbox-ios-icon-checkmark-width:0px;
+// Details page
+$img_details_height:35%;
+// App Theme
+// --------------------------------------------------
+// Ionic apps can have different themes applied, which can
+// then be future customized. This import comes last
+// so that the above variables are used and Ionic's
+// default are overridden.
+
+@import "ionic.theme.default";
+
+
+// Ionicons
+// --------------------------------------------------
+// The premium icon font for Ionic. For more info, please see:
+// http://ionicframework.com/docs/ionicons/
+
+@import "ionic.ionicons";
+
+
+// Fonts
+// --------------------------------------------------
+
+@import "roboto";
+@import "noto-sans";

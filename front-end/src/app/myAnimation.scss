@@ -1,0 +1,111 @@
+@import "../assets/animate/animate.scss";
+.animateApp{
+// ********************** My Classes that extended *************
+
+    .jello{
+        @include jello(
+            $duration:1.5s,
+            $count: 1,
+            $delay: 0s,
+            $function: ease, 
+            $fill: both
+            ); 
+        } 
+
+    .fadeIn{
+        @include fadeIn(
+            $duration:1.5s,
+            $count: 1,
+            $delay: 0s,
+            $function: ease, 
+            $fill: both
+            ); 
+        }
+ 
+    .fadeInUp{
+        @include fadeInUp(
+            $duration:1.5s,
+            $count: 1,
+            $delay: .25s,
+            $function: ease, 
+            $fill: both
+            ); 
+        }
+    .fadeInDown{
+        @include fadeInDown(
+        $duration:1.5s,
+        $count: 1,
+        $delay: .25s,
+        $function: ease, 
+        $fill: both
+        ); 
+    }
+    
+    .fadeInRight{
+        @include fadeInRight(
+        $duration:2.5s,
+        $count: 1,
+        $delay: 0s,
+        $function: ease, 
+        $fill: both
+        ); 
+    }
+        
+// *************************************
+
+    .scroll-content{
+        @extend .fadeInUp;     
+        .list_accordion{
+            @extend .fadeInDown;
+        }
+    }
+    .header-ios{
+        .bar-button-ios{
+            @extend .fadeInDown; 
+        }
+    }
+    .noItems{
+        @extend .fadeInUp;
+    }
+    .footer{
+        @extend .fadeInUp;
+    }
+    
+    .item-checkbox-checked,.item-radio-checked{
+        @extend .fadeIn;
+    }
+    .mark_btn{
+        .active{
+            @extend .jello; 
+        }
+    }
+    page-profile{
+        .appForm{
+            @extend .fadeInUp;
+        }
+        .animate{
+            @extend .fadeInDown;
+        }
+        .profile_img{
+            .icon{
+                @extend .fadeIn;
+            }
+        }
+    }
+    page-people{
+        .contact_List{
+            @extend .fadeInUp;
+        }
+        .search_name_list{
+            @extend .fadeInUp;
+        }
+    }
+    page-people-details{
+        .appForm{
+            .item{
+                @extend .fadeInRight;
+            }
+        }
+    }
+}
+

@@ -1,0 +1,99 @@
+page-setting {
+    .connect_with{
+        padding:$content-padding;
+        p{
+            font-weight:500;
+            font-size:$mainFont!important;
+            margin:0px 0px $content-padding;
+            color: color($colors,color1);
+        }
+        .social_media{
+            @extend .cards;
+            border-radius:$control-radius;
+            &.list{
+                padding:$content-padding 0px;
+                background:color($colors,light);
+                .item {
+                    padding:0px $content-padding;
+                    .radio-icon{
+                        border-radius:2px;
+                        background:color($colors,color4);
+                        &.radio-checked{
+                            .radio-inner{
+                                border-radius:2px;
+                            }
+                        }
+                    }
+                }
+                .label{
+                    .button{
+                        width:44px;
+                        height:44px;
+                        border-radius:50%;
+                        padding:0px;
+                        .icon{
+                            font-size:2.3rem;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    .animate{
+        @extend .notify_me;
+        padding:$content-padding/2!important;
+        .item{
+            background:none;
+            .checkbox{
+                margin:0px $content-padding!important;
+            }
+        }
+    }
+}
+
+.notify_me{
+    padding:$content-padding;
+    p{
+        font-weight:500;
+            font-size:$mainFont!important;
+            margin:0px 0px $content-padding;
+            color: color($colors,color1);
+    }
+    .list{
+        display:inline-block;
+        width:100%;
+        border-radius:$control-radius;
+        overflow:hidden;
+        padding:$content-padding/2 0px;
+        background:color($colors,light);
+    }
+    .item{
+        &.item-checkbox{
+            margin:0px;
+            padding:$content-padding/2;
+            direction:rtl;
+            .checkbox{
+                margin:0px $content-padding/2;
+                .checkbox-icon{
+                    &.checkbox-checked{
+                        .checkbox-inner{
+                            transform:none;
+                            @include position(0,0,0,0);
+                            margin:auto;
+                            border-radius:2px;  
+                            width: 10px;
+                            height: 10px;
+                            background: color($colors,color2);
+                        }
+                    }
+                }
+            }
+            .label {
+                padding:0px $content-padding/2;
+                font-size:$mainFont - .1;
+                direction:ltr;
+                color: color($colors,color1);
+            }
+        }
+    }
+}

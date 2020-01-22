@@ -1,0 +1,48 @@
+
+<ion-header>
+  <ion-navbar>
+    <ion-title>Schedule</ion-title>
+    <ion-buttons end>
+      <button ion-button navPush="NotificationsPage" class="notification_Btn" >
+        <ion-icon name="ios-notifications"></ion-icon>
+        <ion-badge color="danger">2</ion-badge>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+<ion-content>
+  <!-- Calendar  -->
+  <ion-grid class="calendar">
+    <ion-row>
+      <ion-col col-auto>
+        <ion-icon name="ios-arrow-back" color="light" (click)="calendar_function('decrease')"></ion-icon>
+      </ion-col>
+      <ion-col col>
+        <p>
+          <span>{{month_name}}</span>.,
+          <span>{{year}}</span>
+        </p>
+      </ion-col>
+      <ion-col col-auto>
+        <ion-icon name="ios-arrow-forward" color="light" (click)="calendar_function('increase')"></ion-icon>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <!-- Sport Schedule -->
+  <ion-list>
+    <ion-item *ngFor="let item of items"> 
+      <ion-grid>
+        <ion-row>
+          <ion-col col-auto>
+            <p>Tue,10 Oct.,2017</p>
+          </ion-col>
+          <ion-col col-auto>
+            <p padding-left>
+              <span>7:30</span> - <span>10:00</span>AM
+            </p>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-item>
+  </ion-list>
+</ion-content>

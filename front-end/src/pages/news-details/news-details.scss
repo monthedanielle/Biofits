@@ -1,0 +1,28 @@
+page-news-details {
+    .header{
+        .toolbar{
+            .toolbar-background{
+                background-color:transparent;
+            }
+        }
+    }
+    .scroll-content{
+        margin-top:0px!important;
+        overflow: hidden;
+        padding-bottom:0px!important;
+        .details{
+            height:100% - $img_details_height;
+            overflow-y: scroll;
+            .grid{
+                @extend .published_grid;
+            }
+            .description{
+                color: color($colors,color1);
+                padding: $content-padding;
+                background:color($colors,light);
+                margin:0px;
+                line-height:20px;
+            }
+        }
+    }
+}

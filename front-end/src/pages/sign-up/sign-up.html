@@ -1,0 +1,76 @@
+<ion-header>
+  <ion-navbar>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding style="background-color: rgb(2, 109, 158)" class="sign">
+  <div class="logo">
+    <h3>Biofits</h3>
+    <p>Fit bleiben!</p>
+  </div>
+  <ion-label *ngIf="error">{{ errorMessage }}</ion-label>
+  <form [formGroup]="signUpFormGroup" (ngSubmit)="signUp(signUpFormGroup)">
+    <div class="appForm" margin-bottom>
+      <ion-list>
+        <ion-label *ngIf="(vorname.hasError('minlength') || vorname.hasError('maxlength')) && vorname.touched"> Der
+          Vorname muss mindestens {{ firstnameMinLength }} lang sein.</ion-label>
+        <ion-item
+          [style.border-left]="(vorname.hasError('required') || vorname.hasError('minlength')) && vorname.touched ? '3px solid brown' : '3px solid #122a10'">
+          <ion-icon name="md-person" item-left></ion-icon>
+          <ion-input formControlName="vorname"  type="text" placeholder="Vorname"></ion-input>
+        </ion-item>
+
+        <ion-item
+          [style.border-left]="(nachname.hasError('required') || nachname.hasError('minlength')) && nachname.touched ? '3px solid brown' : '3px solid #122a10'">
+          <ion-label *ngIf="(nachname.hasError('minlength') || nachname.hasError('maxlength')) && nachname.touched"> Der
+            Nachname muss mindestens {{ lastnameMinLength }} Zeichen lang sein.</ion-label>
+          <ion-icon name="md-person" item-left></ion-icon>
+          <ion-input formControlName="nachname"  type="text" placeholder="Nachname"></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-icon name="calendar" item-left></ion-icon>
+          <ion-input formControlName="geburtsDatum"  type="date" placeholder="Geburtsdatum"></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-select formControlName="geschlecht"  name="transgender" okText="Zustimmen" placeholder="Geschlecht" cancelText="Abbrechen" item-left>
+            <ion-option value="m">Männlich</ion-option>
+            <ion-option value="f">Weiblich</ion-option>
+          </ion-select>
+        </ion-item>
+
+        <ion-item>
+          <ion-icon name="resize" item-left></ion-icon>
+          <ion-input formControlName="groesse" type="number" placeholder="Größe in Centimeter"></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-icon name="body" item-left></ion-icon>
+          <ion-input formControlName="gewicht"  type="number" placeholder="Gewicht in Kilogram"></ion-input>
+        </ion-item>
+
+        <ion-item
+          [style.border-left]="email.hasError('required') && email.touched ? '3px solid brown' : '3px solid #122a10'">
+          <ion-icon name="ios-mail-outline" item-left></ion-icon>
+          <ion-input formControlName="email"  type="email" placeholder="Mail"></ion-input>
+        </ion-item>
+
+        <ion-label *ngIf="(password.hasError('minlength') || password.hasError('maxlength')) && password.touched">Das
+          Passwort muss mindestens {{ passwordMinLength }} und höchstens {{ passwordMaxLength }} sein.</ion-label>
+        <ion-item
+          [style.border-left]="(password.hasError('required') || password.hasError('minlength') || password.hasError('maxlength')) && password.touched ? '3px solid brown' : '3px solid #122a10'">
+          <ion-icon name="ios-lock-outline" item-left></ion-icon>
+          <ion-input formControlName="password" type="password" placeholder="Passwort"></ion-input>
+        </ion-item>
+
+        <ion-item
+          [style.border-left]="rePassword.hasError('required') && rePassword.touched ? '3px solid brown' : '3px solid #122a10'">
+          <ion-icon name="ios-lock-outline" item-left></ion-icon>
+          <ion-input formControlName="rePassword" type="password" placeholder="Passwort bestätigen"></ion-input>
+        </ion-item>
+      </ion-list>
+    </div>
+    <button ion-button block color="color2" type="submit" [disabled]="!signUpFormGroup.valid" margin-top>Registrierung</button>
+  </form>
+</ion-content>

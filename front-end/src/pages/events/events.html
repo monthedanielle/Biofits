@@ -1,0 +1,65 @@
+
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle icon-only>
+      <ion-icon name="ios-menu"></ion-icon>
+    </button>
+    <ion-title>Tipps</ion-title>
+    <ion-buttons end>
+      <button ion-button navPush="NotificationsPage" class="notification_Btn" >
+        <ion-icon name="ios-notifications"></ion-icon>
+        <ion-badge color="danger">2</ion-badge>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+<ion-content>
+  <!-- events grid -->
+  <ion-grid>
+    <ion-row>
+      <ion-col col-12 col-md-6 col-lg-4 col-xl-3 *ngFor="let item of events" navPush="EventDetailsPage">
+
+        <div class="container">
+          <!-- item image -->
+          <div class="imgBg" [ngStyle]="{'background-image':'url(' + item.img + ')'}">
+            <button ion-button class="mark_btn" color="color1" (click)="marked(item, $event)">
+              <ion-icon name="ios-star"  [ngClass]="{'active':item.click_mark==true}"></ion-icon>
+            </button>
+            <ion-grid >
+              <ion-row>
+                <ion-col col-auto>
+                  <p>
+                    <ion-icon name="ios-eye" color="color2"></ion-icon>
+                    120
+                  </p>
+                </ion-col>
+                <ion-col col>
+                  <p>
+                    <ion-icon name="md-heart" color="light"></ion-icon>
+                    50
+                  </p>
+                </ion-col>
+              </ion-row>
+            </ion-grid>
+          </div>
+          <!-- item title and date -->
+          <ion-grid>
+            <ion-row>
+              <ion-col col>
+                <h5>{{item.title}}</h5>
+              </ion-col>
+              <ion-col col-auto>
+                <p>{{item.date}}</p>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+          <!-- item description -->
+          <p>
+            is simply dummy text of the printing and typesetting industry.is simply dummy text of the printing and typesetting industry.
+          </p>
+        </div>
+
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

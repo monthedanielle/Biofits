@@ -1,0 +1,24 @@
+page-map {
+    .grid{
+        padding:$content-padding/2;
+        .col{
+            padding:$content-padding/2;
+            .mark_btn{
+                width:$control-height;
+                border-radius:$control-radius;
+                background:color($colors,light);
+                ion-icon{
+                    color: color($colors,color1);
+                    font-size:2.2rem;
+                }
+            }
+        }
+    }
+    .map_cover{
+        padding:0px $content-padding $content-padding ;
+        height:calc(100% - ( #{$control-height} + 2*#{$content-padding}) );
+        .map{
+            height:100%;
+        }
+    }
+}

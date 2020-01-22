@@ -1,0 +1,71 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>lessons</ion-title>
+    <ion-buttons end>
+      <button ion-button navPush="NotificationsPage" class="notification_Btn">
+        <ion-icon name="ios-notifications"></ion-icon>
+        <ion-badge color="danger">2</ion-badge>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content >
+  <ion-grid class="lesson_grid">
+    <ion-row>
+      <ion-col col-12 col-md-6 col-lg-4 col-xl-3 *ngFor="let item of lessons" navPush='LessonDetailsPage'>
+        <ion-item>
+          <ion-thumbnail item-start>
+            <img src="{{item.img}}">
+          </ion-thumbnail>
+          <!-- leason name -->
+          <h5>{{item.name}}</h5>
+
+          <ion-grid>
+            <!-- description content -->
+            <ion-row class="row1">
+              <ion-col col-12>
+                <p class="tit">Description : </p>
+              </ion-col>
+              <ion-col col-12>
+                <p class="description">is simply dummy text of the printing and typesetting industry.</p>
+              </ion-col>
+            </ion-row>
+            <!-- cost content -->
+            <ion-row class="row2">
+              <ion-col col-auto>
+                <p class="tit">Foreigners Cost : </p>
+              </ion-col>
+              <ion-col col>
+                <p class="cost">{{item.cost}} $</p>
+              </ion-col>
+            </ion-row>
+            <!-- rating , likes and time -->
+            <ion-row class="row3">
+              <ion-col col-auto>
+                <rating [(ngModel)]="item.rate" class="ratingGroup"  
+                  readOnly="false" 
+                  max="5" 
+                  emptyStarIconName="ios-star-outline" 
+                  starIconName="ios-star" 
+                  nullable="false" 
+                  ></rating>
+              </ion-col>
+
+              <ion-col col>
+                <ion-icon name="md-time" color="color2"></ion-icon>
+                <p>120 h</p>
+              </ion-col>
+
+              <ion-col col>
+                <ion-icon name="md-heart" color="danger"></ion-icon>
+                <p>32</p>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+
+        </ion-item>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

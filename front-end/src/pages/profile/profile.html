@@ -1,0 +1,68 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle icon-only>
+      <ion-icon name="ios-menu"></ion-icon>
+    </button>
+    <ion-title>Profile</ion-title>
+    <ion-buttons end>
+      <button ion-button navPush="NotificationsPage" class="notification_Btn">
+        <ion-icon name="ios-notifications"></ion-icon>
+        <ion-badge color="danger">2</ion-badge>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+
+  <form [formGroup]="benutzerFormGroup">
+    <div class="profile_info">
+      <div class="profile_img" [ngStyle]="{'background-image':'url(' + img + ')'}">
+        <ion-icon name="ios-camera" color="light" *ngIf="flag == false" (click)="selectImage()"></ion-icon>
+      </div>
+      <h5>{{ benutzer.vorname }} {{ benutzer.nachname }}</h5>
+      <h5>{{ benutzer.email }}</h5>
+    </div>
+    <div class="appForm" [ngClass]="{'animate':flag == false}">
+      <ion-list>
+        <ion-item>
+          <ion-icon name="md-person" item-left></ion-icon>
+          <ion-input formControlName="vorname" disabled="{{flag}}" type="text" placeholder="Vorname"></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-icon name="md-person" item-left></ion-icon>
+          <ion-input formControlName="nachname" disabled="{{flag}}" type="text" placeholder="Nachname"></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-icon name="ios-mail" item-left></ion-icon>
+          <ion-input formControlName="email" disabled="{{flag}}" type="email" placeholder="Your E-mail"></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-item>
+            <ion-select formControlName="geschlecht" name="transgender" okText="Zustimmen" placeholder="Geschlecht" cancelText="Abbrechen" item-left>
+              <ion-option value="m" selected>Männlich</ion-option>
+              <ion-option value="f">Weiblich</ion-option>
+            </ion-select>
+          </ion-item>
+        </ion-item>
+
+        <ion-item>
+          <ion-icon name="resize" item-left></ion-icon>
+          <ion-input formControlName="groesse" placeholder="Größe in Centimeter" value="173 Cm"></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-icon name="body" item-left></ion-icon>
+          <ion-input formControlName="gewicht" placeholder="Gewicht in Kilogram" value="75 Kg"></ion-input>
+        </ion-item>
+
+      </ion-list>
+    </div>
+  </form>
+</ion-content>
+<ion-footer>
+  <button ion-button block [color]="btn_color" (click)="update()">{{btn_text}}</button>
+</ion-footer>

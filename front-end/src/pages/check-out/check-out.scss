@@ -1,0 +1,30 @@
+page-check-out {
+    h5{
+        color: color($colors,danger);
+        white-space:normal;
+        margin:0px!important
+    }
+    p{
+        color:color($colors,color1);
+        font-weight:500;
+        margin:0px;
+    }
+    .grid{
+        &.cost{
+            padding:$content-padding/2;
+            background-color: color($colors,color1);
+            margin:$content-padding 0px;
+            .col{
+                padding:$content-padding/2;
+                min-height:34px;
+                display: flex;
+                align-items: center;
+            }
+            p{
+                color: color($colors,color2);
+                @include whiteNormal(34px,2);
+                width:100%;
+            }
+        }
+    }
+}

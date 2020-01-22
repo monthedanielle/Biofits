@@ -1,0 +1,150 @@
+page-lesson-details {
+    .header{
+        .toolbar-background{
+            background:none!important;
+        }
+    }
+    .scroll-content{
+        margin-top:0px!important;
+        overflow:hidden;    
+        .imgBg{
+            height:35%;
+            @extend %details_shadow;
+        }
+        .grid{
+            padding:0px $content-padding/2;
+            .col{
+                padding:0px $content-padding/2;
+                display: flex;
+                align-items: center;
+                &[col-3]{
+                    justify-content: flex-end;
+                    ion-icon{
+                        width:20px;
+                        display:inline-block;
+                    }
+                    p{
+                        max-width:calc(100% - 20px);
+                        @include whiteNormal(34px,2);
+                        font-size:1.1rem!important;
+                        margin:0px;
+                        color: color($colors,color1);
+                    }
+                }
+                .like_btn{
+                    background:none;
+                    height:100%;
+                    min-height:34px;
+                    width:100%;
+                    max-width:$control-height;
+                    margin:auto;
+                    .icon{
+                        font-size:1.8rem;
+                        &.fab-close-icon{
+                            color: color($colors,color4);
+                        }
+                    }
+                }
+                ion-fab{
+                    width:100%;
+                    >button{
+                        &.fab{
+                            @extend .like_btn;
+                            &.fab-close-active{
+                                .icon{
+                                    line-height:34px;
+                                    font-weight:bold;
+                                }
+                            }
+                        }
+                        
+                    }
+                    ion-fab-list{
+                        right:0px;
+                        left:0px;
+                        margin:0px auto 34px;
+                        min-width:30px;
+                    }
+                    .fab-list-active{
+                        button{
+                            &.fab{
+                                height:30px;
+                                width:30px;
+                                margin: 2px 0;
+                                ion-icon{
+                                    font-size:1.6rem;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        } 
+        .details{
+            padding:0px $content-padding;
+            overflow:scroll;
+            height:calc(65% - 34px);
+            h5{
+                margin:0px;
+                color: color($colors,color2);
+                font-weight:400;
+            }
+            p{
+                margin:0px;
+                color: color($colors,color1);
+                line-height:17px;
+                span{
+                    @extend h5;
+                }
+                &.period{
+                    margin-bottom:$content-padding;
+                    span{
+                        display:block;
+                    }
+                }
+            }
+            
+            .list{
+                margin:$content-padding 0px;
+                .list-header{
+                    .label{
+                        @extend h5;
+                    }
+                }
+            }
+        } 
+    }
+    .footer{
+        padding:$content-padding/2;
+    }
+}
+
+
+.course_list{
+    .list-header{
+        .label{
+            @extend h5;
+        }
+        margin-bottom:4px;
+    }
+    .item{
+        &.item-block{
+            background:none;
+            margin:0px;
+            position:relative;
+            padding-left:11px;
+            margin-bottom:4px;
+            p{
+                color:color($colors,color1);
+                white-space:normal;
+            }
+            &:before{
+                @include borderRadius(6px);
+                background:color($colors,color2);
+                @include position(3px,auto,auto,0px);
+                margin:auto 0px;
+                content: '';
+            }
+        }
+    }
+}

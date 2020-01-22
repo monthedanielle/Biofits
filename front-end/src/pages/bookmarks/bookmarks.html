@@ -1,0 +1,33 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle icon-only>
+      <ion-icon name="ios-menu"></ion-icon>
+    </button>
+    <ion-title>Bookmark</ion-title>
+    <ion-buttons end>
+      <button ion-button navPush="NotificationsPage" class="notification_Btn" >
+        <ion-icon name="ios-notifications"></ion-icon>
+        <ion-badge color="danger">2</ion-badge>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+<ion-content>
+  <ion-list>
+    <div class="accordinat_item" *ngFor="let x of item_stable ; let i=index" (click)="toggleGroup(i)">
+      <div padding class="itemStable">
+        <ion-item  padding>
+          <img src="{{x.img}}" item-left>
+          <ion-icon name="ios-arrow-down" item-right color="color2"></ion-icon>
+          <p>{{x.title}}</p>
+        </ion-item>
+      </div>
+       <!-- list of Search name -->
+      <ion-list class="list_accordion" *ngIf="isGroupShown(i)">
+        <ion-item navPush='{{y.Component}}' *ngFor="let y of x.item_accordinat"> 
+          <p class="tit">{{y.name}}</p>
+        </ion-item>
+      </ion-list>
+    </div>
+  </ion-list>
+</ion-content>

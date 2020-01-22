@@ -1,0 +1,41 @@
+page-profile {
+    .scroll-content{
+        padding:$content-padding $content-padding 0px!important;
+    }
+    .appForm{
+        .item{
+            &.item-block{
+                border-radius:0px!important;
+                .icon{
+                    background-color:color($colors,color1);
+                    height:25px;
+                    width:25px;
+                    line-height:25px;
+                    border-radius:50%;
+                    font-size:1.5rem;
+                }
+                &.item-textarea{
+                    .text-input{
+                        padding:5px 0px;
+                    }
+                }
+            }
+            [disabled]{
+                opacity:1!important;
+            }
+            &.item-input-disabled,&.item-select-disabled{
+                opacity:.7;
+                .select-disabled,.label{
+                    opacity:1!important;
+                }
+            }
+        }
+    }
+    .footer{
+        padding:$content-padding;
+        .button{
+            margin:0px;
+            width:100%;
+        }
+    }
+}

@@ -1,0 +1,14 @@
+page-athletics {
+    .two_btns{
+        padding:$content-padding/2;
+        .col{
+            padding:$content-padding/2;
+            .button{
+                border-radius:0px;
+                &.active{
+                    background-color:color($colors,color2);
+                }
+            }
+        }
+    }
+}

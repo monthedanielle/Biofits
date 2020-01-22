@@ -1,0 +1,32 @@
+<ion-header>
+  <ion-navbar>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding style="background-color: rgb(2, 109, 158)" class="sign">
+  <div class="logo">
+    <div class="logo">
+      <h3>Biofits</h3>
+      <p>Fit bleiben!</p>
+      <img src="assets/img/logo.png" />
+    </div>
+  </div>
+  <ion-label *ngIf="error">{{ errorMessage }}</ion-label>
+  <form [formGroup]="signInFormGroup" (ngSubmit)="signIn(signInFormGroup)">
+    <div class="appForm" margin-bottom>
+      <ion-list>
+        <ion-item>
+          <ion-icon name="ios-mail-outline" item-left></ion-icon>
+          <ion-input formControlName="username" type="email" placeholder="Mail"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-icon name="ios-lock-outline" item-left></ion-icon>
+          <ion-input formControlName="password" type="password" placeholder="Password"></ion-input>
+        </ion-item>
+      </ion-list>
+    </div>
+    <button ion-button block color="color2" margin-top type="submit">Anmelden</button>
+  </form>
+  <p class="forgot" (click)="passwordModal()">Passwort vergessen?</p>
+
+</ion-content>

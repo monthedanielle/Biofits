@@ -1,0 +1,51 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle icon-only>
+      <ion-icon name="ios-menu"></ion-icon>
+    </button>
+    <ion-title>Dashboard</ion-title>
+    <ion-buttons end>
+      <button ion-button navPush="NotificationsPage" class="notification_Btn">
+        <ion-icon name="ios-notifications"></ion-icon>
+        <ion-badge color="danger">2</ion-badge>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+<ion-content padding>
+
+  <ion-card class="welcome-card">
+    <ion-card-header>
+      <ion-card-title>Gewinnübersicht</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <canvas #gewinnChart></canvas>
+    </ion-card-content>
+  </ion-card>
+
+  <div padding>
+    <ion-segment [(ngModel)]="pet">
+      <ion-segment-button value="kittens">
+        Laufen
+      </ion-segment-button>
+      <ion-segment-button value="puppies">
+        Schwimmen
+      </ion-segment-button>
+    </ion-segment>
+  </div>
+
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <div [ngSwitch]="pet">
+    <div *ngSwitchCase="'puppies'">
+      <canvas #barChart></canvas>
+    </div>
+    <div *ngSwitchCase="'kittens'">
+    </div>
+  </div>
+</ion-content>

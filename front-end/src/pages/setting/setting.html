@@ -1,0 +1,71 @@
+
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle icon-only>
+      <ion-icon name="ios-menu"></ion-icon>
+    </button>
+    <ion-title>Setting</ion-title>
+    <ion-buttons end>
+      <button ion-button navPush="NotificationsPage" class="notification_Btn" >
+        <ion-icon name="ios-notifications"></ion-icon>
+        <ion-badge color="danger">2</ion-badge>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+<ion-content >
+  <ion-list>
+    <div class="accordinat_item" *ngFor="let x of item_stable ; let i=index" (click)="toggleGroup(i)">
+      <div padding class="itemStable">
+        <ion-item  padding>
+          <ion-icon name="ios-arrow-down" item-right color="color2"></ion-icon>
+          <p>{{x.title}}</p>
+        </ion-item>
+      </div>
+       <!-- list of Search name -->
+      <ion-list class="list_accordion" *ngIf="isGroupShown(i)">
+        <ion-item *ngFor="let y of x.item_accordinat" (click)="select_lang(x,y)"> 
+          <p class="tit">{{y}}</p>
+        </ion-item>
+      </ion-list>
+    </div>
+  </ion-list>
+  <div class="connect_with">
+    <p>Connect With</p>
+    <!-- Social media radio buttons list -->
+    <ion-list radio-group class="social_media">
+      <ion-item *ngFor="let item of social">
+        <ion-label>
+          <button ion-button color="{{item.color}}">
+            <ion-icon name="{{item.icon_name}}"></ion-icon>
+          </button>
+        </ion-label>
+        <ion-radio  value="{{item.name}}"></ion-radio>
+      </ion-item>
+    </ion-list>
+  </div>
+  <div class="notify_me">
+    <p>Notify me with updates in :</p>
+    <!-- notify checkbox buttons list -->
+    <ion-list>
+      <ion-item>
+        <ion-label>Courses</ion-label>
+        <ion-checkbox [(ngModel)]="courses"></ion-checkbox>
+      </ion-item>
+      <ion-item>
+        <ion-label>Events</ion-label>
+        <ion-checkbox [(ngModel)]="events"></ion-checkbox>
+      </ion-item>
+      <ion-item>
+        <ion-label>News</ion-label>
+        <ion-checkbox [(ngModel)]="news"></ion-checkbox>
+      </ion-item>
+    </ion-list>
+  </div>
+  <div class="animate">
+    <ion-item>
+      <ion-label>Animation avilability</ion-label>
+      <ion-checkbox (ionChange)="animateApp($event)"  checked="{{action}}" [(ngModel)]="animate"></ion-checkbox>
+    </ion-item>
+  </div>
+</ion-content>

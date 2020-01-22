@@ -1,0 +1,69 @@
+page-events {
+    .grid{
+        padding:$content-padding/2;
+        .col{
+            padding:$content-padding/2;
+            overflow:hidden;
+            .container{
+                background:color($colors,light);
+                border-radius:$control-radius;
+                overflow:hidden;
+                .imgBg{
+                    height:150px;
+                    @extend %details_shadow;
+                    position:relative;
+                    .mark_btn{
+                        height:30px;
+                        width:30px;
+                        border-radius:50%;
+                        @include position($content-padding,$content-padding,auto,auto);
+                        .icon{
+                            color:color($colors,light);
+                        }
+                    }
+                    .grid{
+                        padding:$content-padding/2;
+                        @include position(auto,0px,0px,0px);
+                        .col{
+                            padding:$content-padding/2;
+                            overflow:hidden;
+                            &[col-auto]{
+                                max-width:50%;
+                            }
+                            .icon{
+                                float:left;
+                                margin:0px 5px;
+                                font-size:1.4rem;
+                                line-height:18px;
+                            }
+                            p{
+                                color: color($colors,light);
+                            }
+                        }
+                    }
+                }
+                >p{
+                    margin:0px;
+                    padding:0px $content-padding;
+                    margin-bottom:$content-padding;
+                    @include whiteNormal(45px,3);
+                    color: color($colors,color1);
+                }
+                .grid{
+                    h5{
+                        color: color($colors,danger);
+                        @include whiteNoWrap(18px);
+                        margin:0px;
+                    }
+                    p{
+                        color: color($colors,color1);
+                        margin:0px;
+                        @include whiteNoWrap(18px);
+                        max-width:100px;
+                        font-size:1.1rem!important;
+                    }
+                }
+            }
+        }
+    }
+}

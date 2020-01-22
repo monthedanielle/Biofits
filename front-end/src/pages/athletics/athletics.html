@@ -1,0 +1,36 @@
+<ion-header>
+
+  <ion-navbar>
+    <button ion-button menuToggle icon-only>
+      <ion-icon name="ios-menu"></ion-icon>
+    </button>
+    <ion-title>Athletics</ion-title>
+    <ion-buttons end>
+      <button ion-button navPush="NotificationsPage" class="notification_Btn" >
+        <ion-icon name="ios-notifications"></ion-icon>
+        <ion-badge color="danger">2</ion-badge>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid class="two_btns">
+    <ion-row>
+      <ion-col col-6>
+        <button ion-button block color="color1" (click)="select_sports('men')" [ngClass]="{'active':type == 'men'}">Men Sports</button>
+      </ion-col>
+      <ion-col col-6>
+        <button ion-button block color="color1" (click)="select_sports('women')" [ngClass]="{'active':type == 'women'}">Women Sports</button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <!-- list of Search name -->
+  <ion-list class="search_name_list">
+    <ion-item *ngFor="let item of sports" navPush='SchedulePage'> 
+      <p class="tit">{{item}}</p>
+    </ion-item>
+  </ion-list>
+
+</ion-content>
+   

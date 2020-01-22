@@ -1,0 +1,51 @@
+page-event-details {
+    .header{
+        .toolbar{
+            .toolbar-background{
+                background-color:transparent;
+            }
+        }
+    }
+    .scroll-content{
+        margin-top:0px!important;
+        overflow: hidden;
+        .details{
+            height:100% - $img_details_height;
+            overflow-y: scroll;  
+            .list{
+                .item{
+                    background:color($colors,light);
+                    padding:0px $content-padding $content-padding ;
+                    margin-bottom:0px;
+                    &.list-header{
+                        padding-top:$content-padding;
+                    }
+                    &.contact_item{
+                        margin-top:$content-padding;
+                        padding-top:$content-padding;
+                        padding-bottom:30px;
+                        align-items:flex-end;
+                        .icon{
+                            font-size:1.5rem!important;
+                            min-height:16px;
+                            width:34px;
+                            text-align: center;
+                        }
+                    }
+                    span{
+                        @extend p;
+                        font-weight:normal;
+                        @include whiteNormal(32px,2);
+                        color: color($colors,danger)!important;
+                    }
+                    p{
+                        white-space:normal;
+                        margin:0px;
+                        color:color($colors,color1);
+                        line-height:16px;
+                    }
+                }
+            }
+        }
+    }
+}

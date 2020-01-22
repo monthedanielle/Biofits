@@ -1,0 +1,96 @@
+page-people-details {
+    .scroll-content{
+        .info{
+            background:color($colors,color1);
+            margin-top:50px;
+            text-align: center;
+            padding:0px $content-padding $content-padding*2;
+            margin-bottom:$content-padding;
+            img{
+                height: 85px;
+                width: 85px;
+                border-radius: 50%;
+                margin-top:-50px;
+                margin-bottom:$content-padding/2;
+            }
+            h5{
+                color: color($colors,color3);
+                margin:0px;
+                font-weight:400;
+            }
+            p{
+                color: color($colors,color3);
+                font-weight:300;
+                margin:0px;
+            }
+            .grid{
+                padding:$content-padding/2;
+                max-width:400px;
+                .col{
+                    padding:$content-padding/2;
+                    .icon{
+                        @include borderRadius(40px);
+                        background-color: color($colors,color3);
+                        font-size:2rem;
+                        &.active{
+                            background-color:rgba(0,0,0,.3);
+                        }
+                    }
+                }
+            }
+        }
+        .appForm{
+            .item{
+                .label{
+                    flex-direction: row;
+                    align-items: center;
+                    justify-content:flex-start;
+                }
+                p{
+                    color: color($colors,color1);
+                    font-weight:500;
+                    @include whiteNormal(32px,2);
+                    margin:0px!important;
+                    font-size:$mainFont!important;
+                }
+                &.phone{
+                    p{
+                        display:inline-block;
+                        &:first-of-type{
+                           text-align: center;
+                           overflow:hidden; 
+                        }
+                        &:last-of-type{
+                            width:calc(100% - 40px);
+                            padding:0px 4px;
+                        }
+
+                    }
+                }
+
+            }
+        }
+        .info_list{
+            @extend .course_list;
+
+             .item{
+                 .label {
+                     margin:0px!important;
+                 }
+                &.item-block{
+                    align-items:flex-start;
+                    &:before{
+                        content: '-';
+                        background:none;
+                        font-weight:500;
+                        color: color($colors,color2);
+                        border-radius:0px;
+                    }
+                }
+            }
+        }
+    }
+    .footer{
+        padding:$content-padding/2;
+    }
+}

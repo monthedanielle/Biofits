@@ -1,0 +1,86 @@
+
+<ion-header>
+  <ion-navbar >
+    <ion-title>Meals</ion-title>
+    <ion-buttons end>
+      <button ion-button navPush="NotificationsPage" class="notification_Btn" >
+        <ion-icon name="ios-notifications"></ion-icon>
+        <ion-badge color="danger">2</ion-badge>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+<ion-content>
+  <!-- Resturant Information -->
+  <ion-grid class="rest_info">
+    <ion-row>
+      <ion-col col-12>
+        <h4>Restaurant Name</h4>
+      </ion-col>
+      <ion-col col-6>
+        <p class="ser">Customer Service</p>
+      </ion-col>
+      <ion-col col-6>
+        <p float-right>
+          <ion-icon name="ios-call"></ion-icon>
+          123-456-789
+        </p>
+      </ion-col>
+      <ion-col col-5>
+        <button ion-button block color="color1" navPush='MapPage' class="map_btn">
+          <ion-icon name="ios-pin"></ion-icon>
+          Veiw on Map
+        </button>
+      </ion-col>
+      <ion-col col-5>
+        <button ion-button block color="color1" (click)="bookmark()" class="mark_btn" >
+          <ion-icon name="ios-star" [ngClass]="{'active':bookmark_Click==true}" ></ion-icon>
+          Bookmark
+        </button>
+      </ion-col>
+      <ion-col col-2>
+
+        <ion-fab>
+          <button ion-fab color="color1" class="share_btn"><ion-icon color="color2" name="md-share"></ion-icon></button>
+          <ion-fab-list side="left">
+            <button ion-fab color="faceColor"><ion-icon name="logo-facebook"></ion-icon></button>
+            <button ion-fab color="twitterColor"><ion-icon name="logo-twitter"></ion-icon></button>
+            <button ion-fab color="googleColor"><ion-icon name="logo-googleplus"></ion-icon></button>
+          </ion-fab-list>
+        </ion-fab>
+
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <!-- Calendar  -->
+  <ion-grid class="calendar">
+    <ion-row>
+      <ion-col col-auto>
+        <ion-icon name="ios-arrow-back" color="light" (click)="click_Left()"></ion-icon>
+      </ion-col>
+      <ion-col col>
+        <p>
+          {{meal_name[n]}}
+        </p>
+      </ion-col>
+      <ion-col col-auto>
+        <ion-icon name="ios-arrow-forward" color="light" (click)="click_Right()"></ion-icon>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <!-- meals grid -->
+  <ion-grid class="meals">
+    <ion-row>
+      <ion-col col-12 col-md-6 col-lg-4 col-xl-3 *ngFor="let item of meals">
+        <ion-item>
+          <ion-thumbnail item-start>
+            <img src="assets/img/eat/001.png">
+          </ion-thumbnail>
+          <h4>BBQ</h4>
+          <p>3 Peices of Fried Chicken</p>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

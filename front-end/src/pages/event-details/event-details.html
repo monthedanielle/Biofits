@@ -1,0 +1,82 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>Details</ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-content>
+  <div class="details_img" style="background-image:url(assets/img/news/004.png)">
+    <ion-item>
+      <h4>Title one of 1st Article</h4>
+      <ion-grid >
+        <ion-row>
+          <ion-col col-auto>
+            <p>
+              <ion-icon name="ios-eye" color="color2"></ion-icon>
+              120
+            </p>
+          </ion-col>
+          <ion-col col>
+            <p (click)="click_like()">
+              <ion-icon name="md-heart" [color]="heart_color"></ion-icon>
+              {{num_clicked}}
+            </p>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+      <div item-right class="btns_div">
+        <button ion-button class="mark_btn" color="color1" (click)="marked()">
+          <ion-icon name="ios-star"  [ngClass]="{'active':click_mark==true}"></ion-icon>
+        </button>
+        <ion-fab>
+          <button ion-fab color="color1"><ion-icon name="md-share"></ion-icon></button>
+          <ion-fab-list side="left">
+            <button ion-fab color="faceColor"><ion-icon name="logo-facebook"></ion-icon></button>
+            <button ion-fab color="twitterColor"><ion-icon name="logo-twitter"></ion-icon></button>
+            <button ion-fab color="googleColor"><ion-icon name="logo-googleplus"></ion-icon></button>
+          </ion-fab-list>
+        </ion-fab>
+      </div>
+    </ion-item>
+  </div>
+  <div class="details">
+    <ion-list>
+
+      <ion-list-header>
+       <span>By: Martin Adam</span>
+      </ion-list-header>
+
+      <ion-item>
+        <span>Description</span>
+        <p>
+            is simply dummy text of the printing and typesetting industry.is simply dummy text of the printing and typesetting industry.
+        </p>
+      </ion-item>
+
+      <ion-item>
+        <span>Time of the event</span>
+        <p>
+          22 Oct.,2017 at 10Am to 8Pm.
+        </p>
+      </ion-item>
+
+      <ion-item>
+        <span>Location</span>
+        <p>
+          Building 4, Holl NO.2
+        </p>
+      </ion-item>
+      
+      <ion-item class="contact_item">
+        <span>Contact us for more information</span>
+        <ion-icon name="md-call" item-right color="color2"></ion-icon>
+        <p>HR</p>
+        <p>123-456-789</p>
+      </ion-item>
+    </ion-list>
+
+  </div>
+
+</ion-content>
+ <ion-footer>
+  <button ion-button block [color]="color" (click)="attend()">{{btn_text}}</button>
+</ion-footer> 

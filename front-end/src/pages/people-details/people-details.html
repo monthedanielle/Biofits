@@ -1,0 +1,80 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>Details</ion-title>
+    <ion-buttons end>
+      <button ion-button navPush="NotificationsPage" class="notification_Btn" >
+        <ion-icon name="ios-notifications"></ion-icon>
+        <ion-badge color="danger">2</ion-badge>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+
+</ion-header>
+<ion-content padding>
+  <div class="profile_info">
+    <div class="profile_img" style="background-image:url(assets/img/profile.png)"></div>
+    <h5>Dr : Adam G Smith</h5>
+    <p>Assistant Professor of Science</p>
+    <ion-grid>
+      <ion-row>
+        <ion-col col-4>
+          <ion-icon name="ios-mail" color="color2" (click)="select('email')" [ngClass]="{'active':type=='email'}"></ion-icon>
+        </ion-col>
+        <ion-col col-4>
+          <ion-icon name="ios-call" color="color2" (click)="select('phone')" [ngClass]="{'active':type=='phone'}"></ion-icon>
+        </ion-col>
+        <ion-col col-4>
+          <ion-icon name="ios-pin" color="color2" (click)="select('location')" [ngClass]="{'active':type=='location'}"></ion-icon>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+  <div class="appForm"  margin-bottom>
+    <ion-list [ngSwitch]="type">
+
+      <ion-item *ngSwitchCase="'email'" >
+        <ion-icon name="ios-mail" item-left></ion-icon>
+        <p>Adam@college.com</p>
+      </ion-item>
+
+      <ion-item class="phone" *ngSwitchCase="'phone'">
+        <ion-icon name="ios-call" item-left></ion-icon>
+        <p>+1</p>
+        <p>9123548725</p>
+      </ion-item>
+
+      <ion-item *ngSwitchCase="'location'">
+        <ion-icon name="ios-pin" item-left></ion-icon>
+        <p>New York,United State</p>
+      </ion-item>
+
+    </ion-list>
+  </div>
+  <ion-list class="info_list">
+    <ion-list-header>
+      Dr : Adam G Smith
+    </ion-list-header>
+    <ion-item *ngFor="let item of items">
+      <p>{{item}}</p>
+    </ion-item>
+  </ion-list>
+</ion-content>
+
+<ion-footer>
+  <ion-grid>
+    <ion-row>
+      <ion-col col-6>
+        <button ion-button block color="color1" (click)="bookmark()" class="mark_btn" >
+          <ion-icon name="ios-star" [ngClass]="{'active':bookmark_Click==true}" ></ion-icon>
+          Bookmark
+        </button>
+      </ion-col>
+      <ion-col col-6>
+        <button ion-button block color="color1" (click)="addContact()" class="mark_btn" >
+          <ion-icon name="md-person-add" [ngClass]="{'active':addContact_Click==true}" ></ion-icon>
+          Add to Contact
+        </button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-footer>

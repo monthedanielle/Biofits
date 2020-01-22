@@ -1,0 +1,21 @@
+page-courses {
+    .list{
+        margin-top:$content-padding;
+
+        .item{
+            background:none;
+            margin-bottom:$content-padding;
+            min-height:34px;
+            &:last-of-type{
+                margin-bottom:none;
+            }
+            ion-icon{
+                color: color($colors,color2);
+                font-size:2.2rem;
+            }
+            p{
+                color: color($colors,color1);
+            }
+        }
+    }
+}

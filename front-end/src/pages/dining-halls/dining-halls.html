@@ -1,0 +1,43 @@
+
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle icon-only>
+      <ion-icon name="ios-menu"></ion-icon>
+    </button>
+    <ion-title>Dining Halls</ion-title>
+    <ion-buttons end>
+      <button ion-button navPush="NotificationsPage" class="notification_Btn" >
+        <ion-icon name="ios-notifications"></ion-icon>
+        <ion-badge color="danger">2</ion-badge>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+<ion-content>
+  <div padding>
+    <ion-searchbar [(ngModel)]="search" placeholder="Search Place"></ion-searchbar>
+  </div>
+    <!-- list of Dining Halls-->
+  <ion-list class="dining_List">
+
+    <ion-item *ngFor="let item of halls_list" navPush="DiningLocationPage"> 
+      <p class="tit">{{item.name}}</p>
+      <ion-grid>
+        <ion-row>
+          <ion-col col-auto>
+            <p>Next :</p>
+          </ion-col>
+          <ion-col col-auto>
+            <p>{{item.type}} :</p>
+          </ion-col>
+          <ion-col col-auto>
+            <p>
+              <span>{{item.time_from}}</span> - <span>{{item.time_to}}</span>AM
+            </p>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-item>
+
+  </ion-list>
+</ion-content>

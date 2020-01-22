@@ -1,0 +1,13 @@
+page-people {
+    .scroll-content{
+        p{  
+            font-size:1.1rem!important;
+            &.tip{
+                padding:$content-padding 0px;
+                margin:0px;
+                border-bottom:1px solid color($colors,light);
+            }
+        }
+    } 
+}
+

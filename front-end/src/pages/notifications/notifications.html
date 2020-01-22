@@ -1,0 +1,28 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>Notification</ion-title>
+    <ion-buttons end>
+      <button ion-button class="notification_Btn" >
+        <ion-icon name="ios-notifications"></ion-icon>
+        <ion-badge color="danger">2</ion-badge>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-list>
+    <ion-item *ngFor="let item of notifications">
+      <ion-avatar item-start *ngIf="item.img !=''">
+        <img src="{{item.img}}">
+      </ion-avatar>
+      <ion-icon name="md-close-circle" item-right color="color1" (click)="removeItem(item)"></ion-icon>
+      <p>{{item.note}}</p>
+    </ion-item>
+  </ion-list>
+  <!-- when no item in Cart's array -->
+  <div class="noItems" *ngIf="notifications.length==0">
+    <ion-icon name="ios-notifications-off-outline"></ion-icon>
+    <p>Empty Notifications</p>
+  </div>
+</ion-content> 

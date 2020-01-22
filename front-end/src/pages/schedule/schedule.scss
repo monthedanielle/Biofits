@@ -1,0 +1,19 @@
+page-schedule {
+    .calendar{
+        margin:$content-padding 0px;
+    }
+    .list{
+        @extend .dining_List;
+        background:color($colors,light);
+        padding:$content-padding 0px;
+        .item{
+            .col{
+                &:last-of-type{
+                    p{
+                        color: color($colors,color1);
+                    }
+                }
+            }
+        }
+    }
+}

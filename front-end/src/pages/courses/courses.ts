@@ -14,7 +14,7 @@ export class CoursesPage {
 
 
   sportart = 'Laufen';
-  pet = 'puppies';
+  pet = 'laufen';
 
   bars: any;
   gewinn: any;

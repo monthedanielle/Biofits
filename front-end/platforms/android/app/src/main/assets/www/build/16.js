@@ -1,14 +1,14 @@
 webpackJsonp([16],{
 
-/***/ 692:
+/***/ 694:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "LandPageModule", function() { return LandPageModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(62);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__land__ = __webpack_require__(710);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(44);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__land__ = __webpack_require__(712);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -38,14 +38,14 @@ var LandPageModule = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 710:
+/***/ 712:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return LandPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(62);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_auth_auth__ = __webpack_require__(152);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(44);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_auth_auth__ = __webpack_require__(88);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -72,7 +72,7 @@ var LandPage = /** @class */ (function () {
     };
     LandPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
-            selector: 'page-land',template:/*ion-inline-start:"/home/nganya/Documents/Myanga/dev/software/biofits/src/pages/land/land.html"*/'\n<ion-content padding style="background-color: rgb(2, 109, 158)" class="sign">\n \n  <div class="logo">\n    <h3>Biofits</h3>\n    <p>Fit bleiben!</p>\n    <img src="assets/img/logo.png"/>\n  </div>\n  <p class="note">Sport treiben und Gutscheine gewinnen</p>\n\n</ion-content>\n<ion-footer>\n  <button ion-button block color="color2" margin-bottom navPush=\'SignUpPage\'>Registrierung</button>\n  <button ion-button block color="light" navPush=\'SignInPage\'>Anmeldung</button>\n</ion-footer>\n'/*ion-inline-end:"/home/nganya/Documents/Myanga/dev/software/biofits/src/pages/land/land.html"*/,
+            selector: 'page-land',template:/*ion-inline-start:"/home/nganya/Documents/programming/biofits/github/Biofits/front-end/src/pages/land/land.html"*/'\n<ion-content padding style="background-color: rgb(2, 109, 158)" class="sign">\n \n  <div class="logo">\n    <h3>Biofits</h3>\n    <p>Fit bleiben!</p>\n    <img src="assets/img/logo.png"/>\n  </div>\n  <p class="note">Sport treiben und Gutscheine gewinnen</p>\n\n</ion-content>\n<ion-footer>\n  <button ion-button block color="color2" margin-bottom navPush=\'SignUpPage\'>Registrierung</button>\n  <button ion-button block color="light" navPush=\'SignInPage\'>Anmeldung</button>\n</ion-footer>\n'/*ion-inline-end:"/home/nganya/Documents/programming/biofits/github/Biofits/front-end/src/pages/land/land.html"*/,
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* NavController */],
             __WEBPACK_IMPORTED_MODULE_2__providers_auth_auth__["a" /* AuthProvider */],

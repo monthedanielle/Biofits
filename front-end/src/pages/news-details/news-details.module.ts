@@ -3,7 +3,7 @@ import { IonicPageModule } from 'ionic-angular';
 import { NewsDetailsPage } from './news-details';
 import {RoundProgressModule} from 'angular-svg-round-progressbar';
 import { NgCircleProgressModule } from 'ng-circle-progress';
-import { Geolocation } from '@ionic-native/geolocation/ngx';
+import { Geolocation } from '@ionic-native/geolocation';
 
 @NgModule({
   declarations: [
@@ -19,8 +19,10 @@ import { Geolocation } from '@ionic-native/geolocation/ngx';
       outerStrokeColor: "#78C000",
       innerStrokeColor: "#C7E596",
       animationDuration: 300
-    }),
-    Geolocation
+    })
   ],
+  providers: [
+    Geolocation
+  ]
 })
 export class NewsDetailsPageModule {}

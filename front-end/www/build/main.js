@@ -1,222 +1,14 @@
 webpackJsonp([25],{
 
-/***/ 152:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AuthProvider; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_common_http__ = __webpack_require__(54);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__env_env__ = __webpack_require__(63);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_operators__ = __webpack_require__(212);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_operators___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_rxjs_operators__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_ionic_angular__ = __webpack_require__(62);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__alert_alert__ = __webpack_require__(153);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_rxjs__ = __webpack_require__(349);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_rxjs___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6_rxjs__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__benutzer_benutzer__ = __webpack_require__(154);
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-
-
-
-
-
-
-
-
-/*
-  Generated class for the AuthProvider provider.
-
-  See https://angular.io/guide/dependency-injection for more info on providers
-  and Angular DI.
-*/
-var AuthProvider = /** @class */ (function () {
-    function AuthProvider(http, envProvider, alertProvider, app, benutzerProvider) {
-        this.http = http;
-        this.envProvider = envProvider;
-        this.alertProvider = alertProvider;
-        this.app = app;
-        this.benutzerProvider = benutzerProvider;
-        this.actualUser = new __WEBPACK_IMPORTED_MODULE_6_rxjs__["BehaviorSubject"](null);
-    }
-    AuthProvider_1 = AuthProvider;
-    AuthProvider.prototype.login = function (username, password) {
-        var _this = this;
-        var body = new __WEBPACK_IMPORTED_MODULE_0__angular_common_http__["d" /* HttpParams */]().set('grant_type', 'password').set('username', username).set('password', password);
-        var options = {
-            headers: new __WEBPACK_IMPORTED_MODULE_0__angular_common_http__["c" /* HttpHeaders */]({
-                'Content-Type': 'application/x-www-form-urlencoded',
-                'Authorization': 'Basic ' + btoa(this.envProvider.SYSTEM_CLIENT + ':' + this.envProvider.SYSTEM_PASSWORD)
-            })
-        };
-        return this.http.post(this.envProvider.LOGIN_URL, body.toString(), options).pipe(Object(__WEBPACK_IMPORTED_MODULE_3_rxjs_operators__["tap"])(function (token) {
-            _this.cleanup();
-            var accessToken = token.access_token;
-            var tokenType = token.token_type;
-            AuthProvider_1.token = token;
-            AuthProvider_1.accessToken = token['access_token'];
-            AuthProvider_1.expiresIn = token['expires_in'];
-            localStorage.setItem('access_token', accessToken);
-            localStorage.setItem('token_type', tokenType);
-            localStorage.setItem('isLoggedIn', 'true');
-            AuthProvider_1.isLoggedIn = true;
-            AuthProvider_1.loggedInAt = new Date();
-            _this.currentUser().subscribe(function (currentUser) {
-                var email = currentUser.principal.username;
-                _this.benutzerProvider.getByEmail(email).subscribe(function (domainUser) {
-                    localStorage.setItem('userId', domainUser.id);
-                    localStorage.setItem('username', currentUser.principal.username);
-                }, function (error) {
-                });
-            }, function (error) {
-                console.log('Could not get current user.', error);
-            });
-            return token;
-        }));
-    };
-    AuthProvider.prototype.logout = function () {
-        var _this = this;
-        var headers = new __WEBPACK_IMPORTED_MODULE_0__angular_common_http__["c" /* HttpHeaders */]({
-            Authorization: 'Bearer ' + localStorage.getItem('access_token')
-        });
-        return this.http.delete(this.envProvider.LOGOUT_URL, { headers: headers }).pipe(Object(__WEBPACK_IMPORTED_MODULE_3_rxjs_operators__["tap"])(function (data) {
-            _this.cleanup();
-            return data;
-        })).subscribe(function (result) {
-            _this.actualUser.next(null);
-            _this.alertProvider.shortAlert('Sign out successful', false);
-            _this.app.getRootNav().setRoot('LandPage');
-        }, function (error) {
-            _this.alertProvider.shortAlert('There was an error during the sign out: ' + error.message, true);
-        });
-    };
-    AuthProvider.prototype.currentUser = function () {
-        var headers = new __WEBPACK_IMPORTED_MODULE_0__angular_common_http__["c" /* HttpHeaders */]({
-            Authorization: 'Bearer ' + localStorage.getItem('access_token')
-        });
-        return this.http.get(this.envProvider.CURRENT_USER, { headers: headers });
-    };
-    AuthProvider.prototype.cleanup = function () {
-        localStorage.clear();
-        AuthProvider_1.isLoggedIn = false;
-        delete AuthProvider_1.token;
-        delete AuthProvider_1.accessToken;
-        delete AuthProvider_1.expiresIn;
-        delete AuthProvider_1.loggedInAt;
-    };
-    AuthProvider.prototype.authenticated = function () {
-        try {
-            return Boolean(JSON.parse(localStorage.getItem('isLoggedIn')));
-        }
-        catch (e) {
-            return false;
-        }
-    };
-    AuthProvider.isLoggedIn = false;
-    AuthProvider = AuthProvider_1 = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_1__angular_core__["B" /* Injectable */])(),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_0__angular_common_http__["a" /* HttpClient */],
-            __WEBPACK_IMPORTED_MODULE_2__env_env__["a" /* EnvProvider */],
-            __WEBPACK_IMPORTED_MODULE_5__alert_alert__["a" /* AlertProvider */],
-            __WEBPACK_IMPORTED_MODULE_4_ionic_angular__["b" /* App */],
-            __WEBPACK_IMPORTED_MODULE_7__benutzer_benutzer__["a" /* BenutzerProvider */]])
-    ], AuthProvider);
-    return AuthProvider;
-    var AuthProvider_1;
-}());
-
-//# sourceMappingURL=auth.js.map
-
-/***/ }),
-
-/***/ 153:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AlertProvider; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(62);
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-
-
-/*
-  Generated class for the AlertProvider provider.
-
-  See https://angular.io/guide/dependency-injection for more info on providers
-  and Angular DI.
-*/
-var AlertProvider = /** @class */ (function () {
-    function AlertProvider(toastCtrl) {
-        this.toastCtrl = toastCtrl;
-    }
-    AlertProvider_1 = AlertProvider;
-    AlertProvider.prototype.shortAlert = function (message, closable) {
-        var toast = this.toastCtrl.create({
-            message: message,
-            duration: AlertProvider_1.SHORT_ALERT_TIME,
-            showCloseButton: closable,
-            closeButtonText: 'Ok'
-        });
-        toast.present();
-    };
-    AlertProvider.prototype.middleAlert = function (message, closable) {
-        var toast = this.toastCtrl.create({
-            message: message,
-            duration: AlertProvider_1.MIDDLE_ALERT_TIME,
-            showCloseButton: closable,
-            closeButtonText: 'Ok'
-        });
-        toast.present();
-    };
-    AlertProvider.prototype.longAlert = function (message, closable) {
-        var toast = this.toastCtrl.create({
-            message: message,
-            duration: AlertProvider_1.LONG_ALERT_TIME,
-            showCloseButton: closable,
-            closeButtonText: 'Ok'
-        });
-        toast.present();
-    };
-    AlertProvider.SHORT_ALERT_TIME = 2000;
-    AlertProvider.MIDDLE_ALERT_TIME = 4000;
-    AlertProvider.LONG_ALERT_TIME = 8000;
-    AlertProvider = AlertProvider_1 = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["B" /* Injectable */])(),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* ToastController */]])
-    ], AlertProvider);
-    return AlertProvider;
-    var AlertProvider_1;
-}());
-
-//# sourceMappingURL=alert.js.map
-
-/***/ }),
-
-/***/ 154:
+/***/ 155:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return BenutzerProvider; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__env_env__ = __webpack_require__(63);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_common_http__ = __webpack_require__(54);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__utils_strings__ = __webpack_require__(305);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_common_http__ = __webpack_require__(43);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__utils_strings__ = __webpack_require__(306);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -243,7 +35,7 @@ var BenutzerProvider = /** @class */ (function () {
     }
     BenutzerProvider.prototype.save = function (benutzer) {
         var options = {
-            headers: new __WEBPACK_IMPORTED_MODULE_2__angular_common_http__["c" /* HttpHeaders */]({
+            headers: new __WEBPACK_IMPORTED_MODULE_2__angular_common_http__["d" /* HttpHeaders */]({
                 'Content-Type': 'application/json',
             })
         };
@@ -251,7 +43,7 @@ var BenutzerProvider = /** @class */ (function () {
     };
     BenutzerProvider.prototype.update = function (id, benutzer) {
         var options = {
-            headers: new __WEBPACK_IMPORTED_MODULE_2__angular_common_http__["c" /* HttpHeaders */]({
+            headers: new __WEBPACK_IMPORTED_MODULE_2__angular_common_http__["d" /* HttpHeaders */]({
                 'Content-Type': 'application/json',
                 Authorization: 'Bearer ' + localStorage.getItem('access_token')
             })
@@ -259,20 +51,20 @@ var BenutzerProvider = /** @class */ (function () {
         return this.http.put(__WEBPACK_IMPORTED_MODULE_3__utils_strings__["a" /* Strings */].format(this.envProvider.BENUTZER_ITEM, id), benutzer, options);
     };
     BenutzerProvider.prototype.getByEmail = function (email) {
-        var headers = new __WEBPACK_IMPORTED_MODULE_2__angular_common_http__["c" /* HttpHeaders */]({
+        var headers = new __WEBPACK_IMPORTED_MODULE_2__angular_common_http__["d" /* HttpHeaders */]({
             Authorization: 'Bearer ' + localStorage.getItem('access_token')
         });
         return this.http.get(__WEBPACK_IMPORTED_MODULE_3__utils_strings__["a" /* Strings */].format(this.envProvider.BENUTZER_BY_EMAIL, email), { headers: headers });
     };
     BenutzerProvider.prototype.get = function (id) {
-        var headers = new __WEBPACK_IMPORTED_MODULE_2__angular_common_http__["c" /* HttpHeaders */]({
+        var headers = new __WEBPACK_IMPORTED_MODULE_2__angular_common_http__["d" /* HttpHeaders */]({
             Authorization: 'Bearer ' + localStorage.getItem('access_token')
         });
         return this.http.get(__WEBPACK_IMPORTED_MODULE_3__utils_strings__["a" /* Strings */].format(this.envProvider.BENUTZER_ITEM, id), { headers: headers });
     };
     BenutzerProvider = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["B" /* Injectable */])(),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2__angular_common_http__["a" /* HttpClient */],
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2__angular_common_http__["b" /* HttpClient */],
             __WEBPACK_IMPORTED_MODULE_1__env_env__["a" /* EnvProvider */]])
     ], BenutzerProvider);
     return BenutzerProvider;
@@ -282,7 +74,7 @@ var BenutzerProvider = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 165:
+/***/ 166:
 /***/ (function(module, exports) {
 
 function webpackEmptyAsyncContext(req) {
@@ -295,56 +87,56 @@ function webpackEmptyAsyncContext(req) {
 webpackEmptyAsyncContext.keys = function() { return []; };
 webpackEmptyAsyncContext.resolve = webpackEmptyAsyncContext;
 module.exports = webpackEmptyAsyncContext;
-webpackEmptyAsyncContext.id = 165;
+webpackEmptyAsyncContext.id = 166;
 
 /***/ }),
 
-/***/ 209:
+/***/ 210:
 /***/ (function(module, exports, __webpack_require__) {
 
 var map = {
 	"../pages/athletics/athletics.module": [
-		683,
+		685,
 		24
 	],
 	"../pages/bookmarks/bookmarks.module": [
-		684,
+		686,
 		23
 	],
 	"../pages/check-out/check-out.module": [
-		685,
+		687,
 		22
 	],
 	"../pages/courses/courses.module": [
-		686,
+		688,
 		0
 	],
 	"../pages/dining-halls/dining-halls.module": [
-		687,
+		689,
 		21
 	],
 	"../pages/dining-location/dining-location.module": [
-		688,
+		690,
 		20
 	],
 	"../pages/event-details/event-details.module": [
-		689,
+		691,
 		19
 	],
 	"../pages/events/events.module": [
-		690,
+		692,
 		18
 	],
 	"../pages/home/home.module": [
-		691,
+		693,
 		17
 	],
 	"../pages/land/land.module": [
-		692,
+		694,
 		16
 	],
 	"../pages/lesson-details/lesson-details.module": [
-		693,
+		695,
 		2
 	],
 	"../pages/lessons/lessons.module": [
@@ -352,55 +144,55 @@ var map = {
 		1
 	],
 	"../pages/map/map.module": [
-		694,
+		697,
 		15
 	],
 	"../pages/meals/meals.module": [
-		695,
+		698,
 		14
 	],
 	"../pages/news-details/news-details.module": [
-		697,
+		699,
 		3
 	],
 	"../pages/news/news.module": [
-		698,
+		700,
 		13
 	],
 	"../pages/notifications/notifications.module": [
-		699,
+		701,
 		12
 	],
 	"../pages/password/password.module": [
-		700,
+		702,
 		11
 	],
 	"../pages/people-details/people-details.module": [
-		701,
+		703,
 		10
 	],
 	"../pages/people/people.module": [
-		702,
+		704,
 		9
 	],
 	"../pages/profile/profile.module": [
-		703,
+		705,
 		8
 	],
 	"../pages/schedule/schedule.module": [
-		704,
+		706,
 		7
 	],
 	"../pages/setting/setting.module": [
-		705,
+		707,
 		6
 	],
 	"../pages/sign-in/sign-in.module": [
-		706,
+		708,
 		5
 	],
 	"../pages/sign-up/sign-up.module": [
-		707,
+		709,
 		4
 	]
 };
@@ -415,12 +207,12 @@ function webpackAsyncContext(req) {
 webpackAsyncContext.keys = function webpackAsyncContextKeys() {
 	return Object.keys(map);
 };
-webpackAsyncContext.id = 209;
+webpackAsyncContext.id = 210;
 module.exports = webpackAsyncContext;
 
 /***/ }),
 
-/***/ 305:
+/***/ 306:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -452,15 +244,15 @@ var Strings = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 350:
+/***/ 351:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return SportArtProvider; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__env_env__ = __webpack_require__(63);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_common_http__ = __webpack_require__(54);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__utils_strings__ = __webpack_require__(305);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_common_http__ = __webpack_require__(43);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__utils_strings__ = __webpack_require__(306);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -486,38 +278,38 @@ var SportArtProvider = /** @class */ (function () {
         this.envProvider = envProvider;
     }
     SportArtProvider.prototype.list = function () {
-        var headers = new __WEBPACK_IMPORTED_MODULE_2__angular_common_http__["c" /* HttpHeaders */]({
+        var headers = new __WEBPACK_IMPORTED_MODULE_2__angular_common_http__["d" /* HttpHeaders */]({
             Authorization: 'Bearer ' + localStorage.getItem('access_token')
         });
         return this.http.get(this.envProvider.SPORT_ART_PATH, { headers: headers });
     };
     SportArtProvider.prototype.get = function (id) {
-        var headers = new __WEBPACK_IMPORTED_MODULE_2__angular_common_http__["c" /* HttpHeaders */]({
+        var headers = new __WEBPACK_IMPORTED_MODULE_2__angular_common_http__["d" /* HttpHeaders */]({
             Authorization: 'Bearer ' + localStorage.getItem('access_token')
         });
         return this.http.get(__WEBPACK_IMPORTED_MODULE_3__utils_strings__["a" /* Strings */].format(this.envProvider.SPORT_ART_ITEM, id), { headers: headers });
     };
     SportArtProvider.prototype.current = function (benutzerId, sportArtId) {
-        var headers = new __WEBPACK_IMPORTED_MODULE_2__angular_common_http__["c" /* HttpHeaders */]({
+        var headers = new __WEBPACK_IMPORTED_MODULE_2__angular_common_http__["d" /* HttpHeaders */]({
             Authorization: 'Bearer ' + localStorage.getItem('access_token')
         });
         return this.http.post(__WEBPACK_IMPORTED_MODULE_3__utils_strings__["a" /* Strings */].format(this.envProvider.CURRENT_AKTIVITAET, benutzerId, sportArtId), {}, { headers: headers });
     };
     SportArtProvider.prototype.createSnapshot = function (benutzerId, sportArtId, snapshots) {
-        var headers = new __WEBPACK_IMPORTED_MODULE_2__angular_common_http__["c" /* HttpHeaders */]({
+        var headers = new __WEBPACK_IMPORTED_MODULE_2__angular_common_http__["d" /* HttpHeaders */]({
             Authorization: 'Bearer ' + localStorage.getItem('access_token')
         });
         return this.http.post(__WEBPACK_IMPORTED_MODULE_3__utils_strings__["a" /* Strings */].format(this.envProvider.SNAPSHOT_AKTIVITAET, benutzerId, sportArtId), snapshots, { headers: headers });
     };
     SportArtProvider.prototype.stop = function (benutzerId, sportArtId) {
-        var headers = new __WEBPACK_IMPORTED_MODULE_2__angular_common_http__["c" /* HttpHeaders */]({
+        var headers = new __WEBPACK_IMPORTED_MODULE_2__angular_common_http__["d" /* HttpHeaders */]({
             Authorization: 'Bearer ' + localStorage.getItem('access_token')
         });
         return this.http.put(__WEBPACK_IMPORTED_MODULE_3__utils_strings__["a" /* Strings */].format(this.envProvider.STOP_AKTIVITAET, benutzerId, sportArtId), {}, { headers: headers });
     };
     SportArtProvider = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["B" /* Injectable */])(),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2__angular_common_http__["a" /* HttpClient */],
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2__angular_common_http__["b" /* HttpClient */],
             __WEBPACK_IMPORTED_MODULE_1__env_env__["a" /* EnvProvider */]])
     ], SportArtProvider);
     return SportArtProvider;
@@ -527,12 +319,12 @@ var SportArtProvider = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 352:
+/***/ 354:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return StringUtilsProvider; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_common_http__ = __webpack_require__(54);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_common_http__ = __webpack_require__(43);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(1);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -585,7 +377,7 @@ var StringUtilsProvider = /** @class */ (function () {
     };
     StringUtilsProvider = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_1__angular_core__["B" /* Injectable */])(),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_0__angular_common_http__["a" /* HttpClient */]])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_0__angular_common_http__["b" /* HttpClient */]])
     ], StringUtilsProvider);
     return StringUtilsProvider;
 }());
@@ -594,16 +386,16 @@ var StringUtilsProvider = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 353:
+/***/ 355:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return MyApp; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(62);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__ = __webpack_require__(307);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__ = __webpack_require__(308);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__providers_auth_auth__ = __webpack_require__(152);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(44);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__ = __webpack_require__(308);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__ = __webpack_require__(309);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__providers_auth_auth__ = __webpack_require__(88);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -670,13 +462,13 @@ var MyApp = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 354:
+/***/ 356:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__ = __webpack_require__(355);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__app_module__ = __webpack_require__(359);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__ = __webpack_require__(357);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__app_module__ = __webpack_require__(361);
 
 
 Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* platformBrowserDynamic */])().bootstrapModule(__WEBPACK_IMPORTED_MODULE_1__app_module__["a" /* AppModule */]);
@@ -684,33 +476,37 @@ Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* pl
 
 /***/ }),
 
-/***/ 359:
+/***/ 361:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AppModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__ = __webpack_require__(34);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(62);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_camera__ = __webpack_require__(351);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__app_component__ = __webpack_require__(353);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ionic_native_status_bar__ = __webpack_require__(307);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ionic_native_splash_screen__ = __webpack_require__(308);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__providers_benutzer_benutzer__ = __webpack_require__(154);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(44);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_camera__ = __webpack_require__(353);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__app_component__ = __webpack_require__(355);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ionic_native_status_bar__ = __webpack_require__(308);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ionic_native_splash_screen__ = __webpack_require__(309);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__providers_benutzer_benutzer__ = __webpack_require__(155);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__providers_env_env__ = __webpack_require__(63);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__providers_alert_alert__ = __webpack_require__(153);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__providers_auth_auth__ = __webpack_require__(152);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__providers_string_utils_string_utils__ = __webpack_require__(352);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__angular_platform_browser_animations__ = __webpack_require__(680);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__angular_http__ = __webpack_require__(682);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__angular_common_http__ = __webpack_require__(54);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__providers_sport_art_sport_art__ = __webpack_require__(350);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__providers_alert_alert__ = __webpack_require__(89);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__providers_auth_auth__ = __webpack_require__(88);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__providers_string_utils_string_utils__ = __webpack_require__(354);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__angular_platform_browser_animations__ = __webpack_require__(681);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__angular_http__ = __webpack_require__(683);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__angular_common_http__ = __webpack_require__(43);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__providers_sport_art_sport_art__ = __webpack_require__(351);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__ionic_native_geolocation__ = __webpack_require__(352);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__interceptors_httpConfig_interceptor__ = __webpack_require__(684);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+
+
 
 
 
@@ -759,9 +555,9 @@ var AppModule = /** @class */ (function () {
                         { loadChildren: '../pages/home/home.module#HomePageModule', name: 'HomePage', segment: 'home', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/land/land.module#LandPageModule', name: 'LandPage', segment: 'land', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/lesson-details/lesson-details.module#LessonDetailsPageModule', name: 'LessonDetailsPage', segment: 'lesson-details', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/lessons/lessons.module#LessonsPageModule', name: 'LessonsPage', segment: 'lessons', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/map/map.module#MapPageModule', name: 'MapPage', segment: 'map', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/meals/meals.module#MealsPageModule', name: 'MealsPage', segment: 'meals', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/lessons/lessons.module#LessonsPageModule', name: 'LessonsPage', segment: 'lessons', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/news-details/news-details.module#NewsDetailsPageModule', name: 'NewsDetailsPage', segment: 'news-details', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/news/news.module#NewsPageModule', name: 'NewsPage', segment: 'news', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/notifications/notifications.module#NotificationsPageModule', name: 'NotificationsPage', segment: 'notifications', priority: 'low', defaultHistory: [] },
@@ -776,7 +572,7 @@ var AppModule = /** @class */ (function () {
                     ]
                 }),
                 __WEBPACK_IMPORTED_MODULE_13__angular_http__["a" /* HttpModule */],
-                __WEBPACK_IMPORTED_MODULE_14__angular_common_http__["b" /* HttpClientModule */],
+                __WEBPACK_IMPORTED_MODULE_14__angular_common_http__["c" /* HttpClientModule */],
                 __WEBPACK_IMPORTED_MODULE_12__angular_platform_browser_animations__["a" /* BrowserAnimationsModule */]
             ],
             bootstrap: [__WEBPACK_IMPORTED_MODULE_2_ionic_angular__["c" /* IonicApp */]],
@@ -793,7 +589,13 @@ var AppModule = /** @class */ (function () {
                 __WEBPACK_IMPORTED_MODULE_9__providers_alert_alert__["a" /* AlertProvider */],
                 __WEBPACK_IMPORTED_MODULE_10__providers_auth_auth__["a" /* AuthProvider */],
                 __WEBPACK_IMPORTED_MODULE_11__providers_string_utils_string_utils__["a" /* StringUtilsProvider */],
-                __WEBPACK_IMPORTED_MODULE_15__providers_sport_art_sport_art__["a" /* SportArtProvider */]
+                __WEBPACK_IMPORTED_MODULE_15__providers_sport_art_sport_art__["a" /* SportArtProvider */],
+                {
+                    provide: __WEBPACK_IMPORTED_MODULE_14__angular_common_http__["a" /* HTTP_INTERCEPTORS */],
+                    useClass: __WEBPACK_IMPORTED_MODULE_17__interceptors_httpConfig_interceptor__["a" /* HttpConfigInterceptor */],
+                    multi: true
+                },
+                __WEBPACK_IMPORTED_MODULE_16__ionic_native_geolocation__["a" /* Geolocation */]
             ]
         })
     ], AppModule);
@@ -866,7 +668,284 @@ var EnvProvider = /** @class */ (function () {
 
 //# sourceMappingURL=env.js.map
 
+/***/ }),
+
+/***/ 684:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return HttpConfigInterceptor; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_common_http__ = __webpack_require__(43);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rxjs_operators__ = __webpack_require__(121);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rxjs_operators___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_rxjs_operators__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_core__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_auth_auth__ = __webpack_require__(88);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__providers_alert_alert__ = __webpack_require__(89);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_ionic_angular__ = __webpack_require__(44);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_rxjs_observable_ErrorObservable__ = __webpack_require__(297);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_rxjs_observable_ErrorObservable___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6_rxjs_observable_ErrorObservable__);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+
+
+
+var HttpConfigInterceptor = /** @class */ (function () {
+    function HttpConfigInterceptor(app, authProvider, alertProvider) {
+        this.app = app;
+        this.authProvider = authProvider;
+        this.alertProvider = alertProvider;
+    }
+    HttpConfigInterceptor.prototype.intercept = function (request, next) {
+        var _this = this;
+        return next.handle(request).pipe(Object(__WEBPACK_IMPORTED_MODULE_1_rxjs_operators__["map"])(function (event) {
+            _this.event = event;
+            if (event instanceof __WEBPACK_IMPORTED_MODULE_0__angular_common_http__["f" /* HttpResponse */]) {
+            }
+            return event;
+        }), Object(__WEBPACK_IMPORTED_MODULE_1_rxjs_operators__["catchError"])(function (error) {
+            if (error.error.error === 'invalid_token') {
+                _this.authProvider.cleanup();
+                _this.alertProvider.shortAlert('Sitzung abgelaufen!', true);
+                _this.app.getRootNav().setRoot('LandPage');
+            }
+            return __WEBPACK_IMPORTED_MODULE_6_rxjs_observable_ErrorObservable__["ErrorObservable"].create(error);
+        }));
+    };
+    __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_2__angular_core__["_9" /* ViewChild */])(__WEBPACK_IMPORTED_MODULE_5_ionic_angular__["i" /* Nav */]),
+        __metadata("design:type", __WEBPACK_IMPORTED_MODULE_5_ionic_angular__["i" /* Nav */])
+    ], HttpConfigInterceptor.prototype, "nav", void 0);
+    HttpConfigInterceptor = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_2__angular_core__["B" /* Injectable */])(),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_5_ionic_angular__["b" /* App */],
+            __WEBPACK_IMPORTED_MODULE_3__providers_auth_auth__["a" /* AuthProvider */],
+            __WEBPACK_IMPORTED_MODULE_4__providers_alert_alert__["a" /* AlertProvider */]])
+    ], HttpConfigInterceptor);
+    return HttpConfigInterceptor;
+}());
+
+//# sourceMappingURL=httpConfig.interceptor.js.map
+
+/***/ }),
+
+/***/ 88:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AuthProvider; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_common_http__ = __webpack_require__(43);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__env_env__ = __webpack_require__(63);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_operators__ = __webpack_require__(121);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_operators___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_rxjs_operators__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_ionic_angular__ = __webpack_require__(44);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__alert_alert__ = __webpack_require__(89);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_rxjs__ = __webpack_require__(350);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_rxjs___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6_rxjs__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__benutzer_benutzer__ = __webpack_require__(155);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+
+
+
+
+/*
+  Generated class for the AuthProvider provider.
+
+  See https://angular.io/guide/dependency-injection for more info on providers
+  and Angular DI.
+*/
+var AuthProvider = /** @class */ (function () {
+    function AuthProvider(http, envProvider, alertProvider, app, benutzerProvider) {
+        this.http = http;
+        this.envProvider = envProvider;
+        this.alertProvider = alertProvider;
+        this.app = app;
+        this.benutzerProvider = benutzerProvider;
+        this.actualUser = new __WEBPACK_IMPORTED_MODULE_6_rxjs__["BehaviorSubject"](null);
+    }
+    AuthProvider_1 = AuthProvider;
+    AuthProvider.prototype.login = function (username, password) {
+        var _this = this;
+        var body = new __WEBPACK_IMPORTED_MODULE_0__angular_common_http__["e" /* HttpParams */]().set('grant_type', 'password').set('username', username).set('password', password);
+        var options = {
+            headers: new __WEBPACK_IMPORTED_MODULE_0__angular_common_http__["d" /* HttpHeaders */]({
+                'Content-Type': 'application/x-www-form-urlencoded',
+                'Authorization': 'Basic ' + btoa(this.envProvider.SYSTEM_CLIENT + ':' + this.envProvider.SYSTEM_PASSWORD)
+            })
+        };
+        return this.http.post(this.envProvider.LOGIN_URL, body.toString(), options).pipe(Object(__WEBPACK_IMPORTED_MODULE_3_rxjs_operators__["tap"])(function (token) {
+            _this.cleanup();
+            var accessToken = token.access_token;
+            var tokenType = token.token_type;
+            AuthProvider_1.token = token;
+            AuthProvider_1.accessToken = token['access_token'];
+            AuthProvider_1.expiresIn = token['expires_in'];
+            localStorage.setItem('access_token', accessToken);
+            localStorage.setItem('token_type', tokenType);
+            localStorage.setItem('isLoggedIn', 'true');
+            AuthProvider_1.isLoggedIn = true;
+            AuthProvider_1.loggedInAt = new Date();
+            _this.currentUser().subscribe(function (currentUser) {
+                var email = currentUser.principal.username;
+                _this.benutzerProvider.getByEmail(email).subscribe(function (domainUser) {
+                    localStorage.setItem('userId', domainUser.id);
+                    localStorage.setItem('username', currentUser.principal.username);
+                }, function (error) {
+                });
+            }, function (error) {
+                console.log('Could not get current user.', error);
+            });
+            return token;
+        }));
+    };
+    AuthProvider.prototype.logout = function () {
+        var _this = this;
+        var headers = new __WEBPACK_IMPORTED_MODULE_0__angular_common_http__["d" /* HttpHeaders */]({
+            Authorization: 'Bearer ' + localStorage.getItem('access_token')
+        });
+        return this.http.delete(this.envProvider.LOGOUT_URL, { headers: headers }).pipe(Object(__WEBPACK_IMPORTED_MODULE_3_rxjs_operators__["tap"])(function (data) {
+            _this.cleanup();
+            return data;
+        })).subscribe(function (result) {
+            _this.actualUser.next(null);
+            _this.alertProvider.shortAlert('Sign out successful', false);
+            _this.app.getRootNav().setRoot('LandPage');
+        }, function (error) {
+            _this.alertProvider.shortAlert('There was an error during the sign out: ' + error.message, true);
+        });
+    };
+    AuthProvider.prototype.currentUser = function () {
+        var headers = new __WEBPACK_IMPORTED_MODULE_0__angular_common_http__["d" /* HttpHeaders */]({
+            Authorization: 'Bearer ' + localStorage.getItem('access_token')
+        });
+        return this.http.get(this.envProvider.CURRENT_USER, { headers: headers });
+    };
+    AuthProvider.prototype.cleanup = function () {
+        localStorage.clear();
+        AuthProvider_1.isLoggedIn = false;
+        delete AuthProvider_1.token;
+        delete AuthProvider_1.accessToken;
+        delete AuthProvider_1.expiresIn;
+        delete AuthProvider_1.loggedInAt;
+    };
+    AuthProvider.prototype.authenticated = function () {
+        try {
+            return Boolean(JSON.parse(localStorage.getItem('isLoggedIn')));
+        }
+        catch (e) {
+            return false;
+        }
+    };
+    AuthProvider.isLoggedIn = false;
+    AuthProvider = AuthProvider_1 = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_1__angular_core__["B" /* Injectable */])(),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_0__angular_common_http__["b" /* HttpClient */],
+            __WEBPACK_IMPORTED_MODULE_2__env_env__["a" /* EnvProvider */],
+            __WEBPACK_IMPORTED_MODULE_5__alert_alert__["a" /* AlertProvider */],
+            __WEBPACK_IMPORTED_MODULE_4_ionic_angular__["b" /* App */],
+            __WEBPACK_IMPORTED_MODULE_7__benutzer_benutzer__["a" /* BenutzerProvider */]])
+    ], AuthProvider);
+    return AuthProvider;
+    var AuthProvider_1;
+}());
+
+//# sourceMappingURL=auth.js.map
+
+/***/ }),
+
+/***/ 89:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AlertProvider; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(44);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+/*
+  Generated class for the AlertProvider provider.
+
+  See https://angular.io/guide/dependency-injection for more info on providers
+  and Angular DI.
+*/
+var AlertProvider = /** @class */ (function () {
+    function AlertProvider(toastCtrl) {
+        this.toastCtrl = toastCtrl;
+    }
+    AlertProvider_1 = AlertProvider;
+    AlertProvider.prototype.shortAlert = function (message, closable) {
+        var toast = this.toastCtrl.create({
+            message: message,
+            duration: AlertProvider_1.SHORT_ALERT_TIME,
+            showCloseButton: closable,
+            closeButtonText: 'Ok'
+        });
+        toast.present();
+    };
+    AlertProvider.prototype.middleAlert = function (message, closable) {
+        var toast = this.toastCtrl.create({
+            message: message,
+            duration: AlertProvider_1.MIDDLE_ALERT_TIME,
+            showCloseButton: closable,
+            closeButtonText: 'Ok'
+        });
+        toast.present();
+    };
+    AlertProvider.prototype.longAlert = function (message, closable) {
+        var toast = this.toastCtrl.create({
+            message: message,
+            duration: AlertProvider_1.LONG_ALERT_TIME,
+            showCloseButton: closable,
+            closeButtonText: 'Ok'
+        });
+        toast.present();
+    };
+    AlertProvider.SHORT_ALERT_TIME = 2000;
+    AlertProvider.MIDDLE_ALERT_TIME = 4000;
+    AlertProvider.LONG_ALERT_TIME = 8000;
+    AlertProvider = AlertProvider_1 = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["B" /* Injectable */])(),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* ToastController */]])
+    ], AlertProvider);
+    return AlertProvider;
+    var AlertProvider_1;
+}());
+
+//# sourceMappingURL=alert.js.map
+
 /***/ })
 
-},[354]);
+},[356]);
 //# sourceMappingURL=main.js.map

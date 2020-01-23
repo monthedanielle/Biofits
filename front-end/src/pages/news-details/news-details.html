@@ -18,10 +18,10 @@
     <div class="comments">
       <ion-card>
         <ion-card-header>
-          <ion-card-title>Ziel: {{ currentActivity.ziel }} Meters</ion-card-title>
+          <ion-card-title>Ziel: {{ distanz }} / {{ ziel }} Meters</ion-card-title>
         </ion-card-header>
         <ion-card-content>
-          <circle-progress [percent]="currentActivity.distanz / currentActivity.ziel" [radius]="100" [outerStrokeWidth]="16" [innerStrokeWidth]="8"
+          <circle-progress [percent]="percentage" [radius]="100" [outerStrokeWidth]="16" [innerStrokeWidth]="8"
             [outerStrokeColor]="'#78C000'" [innerStrokeColor]="'#C7E596'" [animation]="true" [animationDuration]="300">
           </circle-progress>
         </ion-card-content>

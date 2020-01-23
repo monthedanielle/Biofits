@@ -1,14 +1,14 @@
 webpackJsonp([6],{
 
-/***/ 703:
+/***/ 707:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SchedulePageModule", function() { return SchedulePageModule; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SettingPageModule", function() { return SettingPageModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(62);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__schedule__ = __webpack_require__(862);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(44);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__setting__ = __webpack_require__(867);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -18,33 +18,34 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 
 
-var SchedulePageModule = /** @class */ (function () {
-    function SchedulePageModule() {
+var SettingPageModule = /** @class */ (function () {
+    function SettingPageModule() {
     }
-    SchedulePageModule = __decorate([
+    SettingPageModule = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["J" /* NgModule */])({
             declarations: [
-                __WEBPACK_IMPORTED_MODULE_2__schedule__["a" /* SchedulePage */],
+                __WEBPACK_IMPORTED_MODULE_2__setting__["a" /* SettingPage */],
             ],
             imports: [
-                __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__schedule__["a" /* SchedulePage */]),
+                __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__setting__["a" /* SettingPage */]),
             ],
         })
-    ], SchedulePageModule);
-    return SchedulePageModule;
+    ], SettingPageModule);
+    return SettingPageModule;
 }());
 
-//# sourceMappingURL=schedule.module.js.map
+//# sourceMappingURL=setting.module.js.map
 
 /***/ }),
 
-/***/ 862:
+/***/ 867:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return SchedulePage; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return SettingPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(62);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(44);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__app_app_component__ = __webpack_require__(355);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -56,66 +57,61 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 
 
-var SchedulePage = /** @class */ (function () {
-    function SchedulePage(navCtrl, navParams) {
+
+var SettingPage = /** @class */ (function () {
+    function SettingPage(_myApp, navCtrl, navParams) {
+        this._myApp = _myApp;
         this.navCtrl = navCtrl;
         this.navParams = navParams;
-        this.items = [
-            {},
-            {},
-            {},
-            {},
-            {},
-            {},
-            {},
-            {},
-            {},
-            {},
-            {},
-            {},
+        this.action = false;
+        this.item_stable = [
+            {
+                title: 'App Language',
+                item_accordinat: ["English", "Franch"]
+            },
         ];
-        // calender Function
-        this.months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
-        this.month_name = 'Nov';
-        this.year = 2017;
-        this.month_index = this.months.indexOf(this.month_name);
+        this.social = [
+            { icon_name: 'logo-facebook', name: 'facebook', color: "faceColor" },
+            { icon_name: 'logo-googleplus', name: 'goohle_pluse', color: "googleColor" },
+            { icon_name: 'logo-twitter', name: 'twitter', color: "twitterColor" },
+        ];
+        this.shownGroup = null;
+        this.action = this._myApp.animateVarible;
     }
-    SchedulePage.prototype.ionViewDidLoad = function () {
-        console.log('ionViewDidLoad SchedulePage');
+    SettingPage.prototype.ionViewDidLoad = function () {
+        console.log('ionViewDidLoad BookmarksPage');
     };
-    SchedulePage.prototype.calendar_function = function (type) {
-        if (type == 'increase') {
-            if (this.month_index == this.months.length - 1) {
-                this.month_index = 0;
-                this.year = this.year + 1;
-            }
-            else {
-                this.month_index = this.month_index + 1;
-            }
+    SettingPage.prototype.toggleGroup = function (group) {
+        if (this.isGroupShown(group)) {
+            this.shownGroup = null;
         }
-        else if (type == 'decrease') {
-            if (this.month_index == 0) {
-                this.month_index = this.months.length - 1;
-                this.year = this.year - 1;
-            }
-            else {
-                this.month_index = this.month_index - 1;
-            }
+        else {
+            this.shownGroup = group;
         }
-        this.month_name = this.months[this.month_index];
-        console.log(this.month_name);
-        console.log(this.year);
     };
-    SchedulePage = __decorate([
+    ;
+    SettingPage.prototype.isGroupShown = function (group) {
+        return this.shownGroup === group;
+    };
+    ;
+    // select Language Function
+    SettingPage.prototype.select_lang = function (x, y) {
+        x.title = y;
+    };
+    SettingPage.prototype.animateApp = function (e) {
+        this._myApp.animateVarible = e.checked;
+        this.action = this._myApp.animateVarible;
+    };
+    SettingPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
-            selector: 'page-schedule',template:/*ion-inline-start:"/home/nganya/Documents/Myanga/dev/software/biofits/src/pages/schedule/schedule.html"*/'\n<ion-header>\n  <ion-navbar>\n    <ion-title>Schedule</ion-title>\n    <ion-buttons end>\n      <button ion-button navPush="NotificationsPage" class="notification_Btn" >\n        <ion-icon name="ios-notifications"></ion-icon>\n        <ion-badge color="danger">2</ion-badge>\n      </button>\n    </ion-buttons>\n  </ion-navbar>\n</ion-header>\n<ion-content>\n  <!-- Calendar  -->\n  <ion-grid class="calendar">\n    <ion-row>\n      <ion-col col-auto>\n        <ion-icon name="ios-arrow-back" color="light" (click)="calendar_function(\'decrease\')"></ion-icon>\n      </ion-col>\n      <ion-col col>\n        <p>\n          <span>{{month_name}}</span>.,\n          <span>{{year}}</span>\n        </p>\n      </ion-col>\n      <ion-col col-auto>\n        <ion-icon name="ios-arrow-forward" color="light" (click)="calendar_function(\'increase\')"></ion-icon>\n      </ion-col>\n    </ion-row>\n  </ion-grid>\n  <!-- Sport Schedule -->\n  <ion-list>\n    <ion-item *ngFor="let item of items"> \n      <ion-grid>\n        <ion-row>\n          <ion-col col-auto>\n            <p>Tue,10 Oct.,2017</p>\n          </ion-col>\n          <ion-col col-auto>\n            <p padding-left>\n              <span>7:30</span> - <span>10:00</span>AM\n            </p>\n          </ion-col>\n        </ion-row>\n      </ion-grid>\n    </ion-item>\n  </ion-list>\n</ion-content>\n'/*ion-inline-end:"/home/nganya/Documents/Myanga/dev/software/biofits/src/pages/schedule/schedule.html"*/,
+            selector: 'page-setting',template:/*ion-inline-start:"/home/nganya/Documents/programming/biofits/github/Biofits/front-end/src/pages/setting/setting.html"*/'\n<ion-header>\n  <ion-navbar>\n    <button ion-button menuToggle icon-only>\n      <ion-icon name="ios-menu"></ion-icon>\n    </button>\n    <ion-title>Setting</ion-title>\n    <ion-buttons end>\n      <button ion-button navPush="NotificationsPage" class="notification_Btn" >\n        <ion-icon name="ios-notifications"></ion-icon>\n        <ion-badge color="danger">2</ion-badge>\n      </button>\n    </ion-buttons>\n  </ion-navbar>\n</ion-header>\n<ion-content >\n  <ion-list>\n    <div class="accordinat_item" *ngFor="let x of item_stable ; let i=index" (click)="toggleGroup(i)">\n      <div padding class="itemStable">\n        <ion-item  padding>\n          <ion-icon name="ios-arrow-down" item-right color="color2"></ion-icon>\n          <p>{{x.title}}</p>\n        </ion-item>\n      </div>\n       <!-- list of Search name -->\n      <ion-list class="list_accordion" *ngIf="isGroupShown(i)">\n        <ion-item *ngFor="let y of x.item_accordinat" (click)="select_lang(x,y)"> \n          <p class="tit">{{y}}</p>\n        </ion-item>\n      </ion-list>\n    </div>\n  </ion-list>\n  <div class="connect_with">\n    <p>Connect With</p>\n    <!-- Social media radio buttons list -->\n    <ion-list radio-group class="social_media">\n      <ion-item *ngFor="let item of social">\n        <ion-label>\n          <button ion-button color="{{item.color}}">\n            <ion-icon name="{{item.icon_name}}"></ion-icon>\n          </button>\n        </ion-label>\n        <ion-radio  value="{{item.name}}"></ion-radio>\n      </ion-item>\n    </ion-list>\n  </div>\n  <div class="notify_me">\n    <p>Notify me with updates in :</p>\n    <!-- notify checkbox buttons list -->\n    <ion-list>\n      <ion-item>\n        <ion-label>Courses</ion-label>\n        <ion-checkbox [(ngModel)]="courses"></ion-checkbox>\n      </ion-item>\n      <ion-item>\n        <ion-label>Events</ion-label>\n        <ion-checkbox [(ngModel)]="events"></ion-checkbox>\n      </ion-item>\n      <ion-item>\n        <ion-label>News</ion-label>\n        <ion-checkbox [(ngModel)]="news"></ion-checkbox>\n      </ion-item>\n    </ion-list>\n  </div>\n  <div class="animate">\n    <ion-item>\n      <ion-label>Animation avilability</ion-label>\n      <ion-checkbox (ionChange)="animateApp($event)"  checked="{{action}}" [(ngModel)]="animate"></ion-checkbox>\n    </ion-item>\n  </div>\n</ion-content>\n'/*ion-inline-end:"/home/nganya/Documents/programming/biofits/github/Biofits/front-end/src/pages/setting/setting.html"*/,
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* NavParams */]])
-    ], SchedulePage);
-    return SchedulePage;
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2__app_app_component__["a" /* MyApp */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* NavParams */]])
+    ], SettingPage);
+    return SettingPage;
 }());
 
-//# sourceMappingURL=schedule.js.map
+//# sourceMappingURL=setting.js.map
 
 /***/ })
 

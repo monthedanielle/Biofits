@@ -1,14 +1,14 @@
 webpackJsonp([18],{
 
-/***/ 689:
+/***/ 692:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "EventsPageModule", function() { return EventsPageModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(62);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__events__ = __webpack_require__(849);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(44);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__events__ = __webpack_require__(852);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -38,14 +38,14 @@ var EventsPageModule = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 849:
+/***/ 852:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return EventsPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(62);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_auth_auth__ = __webpack_require__(152);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(44);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_auth_auth__ = __webpack_require__(88);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -161,7 +161,7 @@ var EventsPage = /** @class */ (function () {
     };
     EventsPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
-            selector: 'page-events',template:/*ion-inline-start:"/home/nganya/Documents/Myanga/dev/software/biofits/src/pages/events/events.html"*/'\n<ion-header>\n  <ion-navbar>\n    <button ion-button menuToggle icon-only>\n      <ion-icon name="ios-menu"></ion-icon>\n    </button>\n    <ion-title>Tipps</ion-title>\n    <ion-buttons end>\n      <button ion-button navPush="NotificationsPage" class="notification_Btn" >\n        <ion-icon name="ios-notifications"></ion-icon>\n        <ion-badge color="danger">2</ion-badge>\n      </button>\n    </ion-buttons>\n  </ion-navbar>\n</ion-header>\n<ion-content>\n  <!-- events grid -->\n  <ion-grid>\n    <ion-row>\n      <ion-col col-12 col-md-6 col-lg-4 col-xl-3 *ngFor="let item of events" navPush="EventDetailsPage">\n\n        <div class="container">\n          <!-- item image -->\n          <div class="imgBg" [ngStyle]="{\'background-image\':\'url(\' + item.img + \')\'}">\n            <button ion-button class="mark_btn" color="color1" (click)="marked(item, $event)">\n              <ion-icon name="ios-star"  [ngClass]="{\'active\':item.click_mark==true}"></ion-icon>\n            </button>\n            <ion-grid >\n              <ion-row>\n                <ion-col col-auto>\n                  <p>\n                    <ion-icon name="ios-eye" color="color2"></ion-icon>\n                    120\n                  </p>\n                </ion-col>\n                <ion-col col>\n                  <p>\n                    <ion-icon name="md-heart" color="light"></ion-icon>\n                    50\n                  </p>\n                </ion-col>\n              </ion-row>\n            </ion-grid>\n          </div>\n          <!-- item title and date -->\n          <ion-grid>\n            <ion-row>\n              <ion-col col>\n                <h5>{{item.title}}</h5>\n              </ion-col>\n              <ion-col col-auto>\n                <p>{{item.date}}</p>\n              </ion-col>\n            </ion-row>\n          </ion-grid>\n          <!-- item description -->\n          <p>\n            is simply dummy text of the printing and typesetting industry.is simply dummy text of the printing and typesetting industry.\n          </p>\n        </div>\n\n      </ion-col>\n    </ion-row>\n  </ion-grid>\n</ion-content>\n'/*ion-inline-end:"/home/nganya/Documents/Myanga/dev/software/biofits/src/pages/events/events.html"*/,
+            selector: 'page-events',template:/*ion-inline-start:"/home/nganya/Documents/programming/biofits/github/Biofits/front-end/src/pages/events/events.html"*/'\n<ion-header>\n  <ion-navbar>\n    <button ion-button menuToggle icon-only>\n      <ion-icon name="ios-menu"></ion-icon>\n    </button>\n    <ion-title>Tipps</ion-title>\n    <ion-buttons end>\n      <button ion-button navPush="NotificationsPage" class="notification_Btn" >\n        <ion-icon name="ios-notifications"></ion-icon>\n        <ion-badge color="danger">2</ion-badge>\n      </button>\n    </ion-buttons>\n  </ion-navbar>\n</ion-header>\n<ion-content>\n  <!-- events grid -->\n  <ion-grid>\n    <ion-row>\n      <ion-col col-12 col-md-6 col-lg-4 col-xl-3 *ngFor="let item of events" navPush="EventDetailsPage">\n\n        <div class="container">\n          <!-- item image -->\n          <div class="imgBg" [ngStyle]="{\'background-image\':\'url(\' + item.img + \')\'}">\n            <button ion-button class="mark_btn" color="color1" (click)="marked(item, $event)">\n              <ion-icon name="ios-star"  [ngClass]="{\'active\':item.click_mark==true}"></ion-icon>\n            </button>\n            <ion-grid >\n              <ion-row>\n                <ion-col col-auto>\n                  <p>\n                    <ion-icon name="ios-eye" color="color2"></ion-icon>\n                    120\n                  </p>\n                </ion-col>\n                <ion-col col>\n                  <p>\n                    <ion-icon name="md-heart" color="light"></ion-icon>\n                    50\n                  </p>\n                </ion-col>\n              </ion-row>\n            </ion-grid>\n          </div>\n          <!-- item title and date -->\n          <ion-grid>\n            <ion-row>\n              <ion-col col>\n                <h5>{{item.title}}</h5>\n              </ion-col>\n              <ion-col col-auto>\n                <p>{{item.date}}</p>\n              </ion-col>\n            </ion-row>\n          </ion-grid>\n          <!-- item description -->\n          <p>\n            is simply dummy text of the printing and typesetting industry.is simply dummy text of the printing and typesetting industry.\n          </p>\n        </div>\n\n      </ion-col>\n    </ion-row>\n  </ion-grid>\n</ion-content>\n'/*ion-inline-end:"/home/nganya/Documents/programming/biofits/github/Biofits/front-end/src/pages/events/events.html"*/,
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* NavController */],
             __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* NavParams */],

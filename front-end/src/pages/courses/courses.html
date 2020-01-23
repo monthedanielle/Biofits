@@ -16,7 +16,7 @@
 
   <ion-card class="welcome-card">
     <ion-card-header>
-      <ion-card-title>Gewinnübersicht</ion-card-title>
+      <ion-card-title>Abnahmeübersicht</ion-card-title>
     </ion-card-header>
     <ion-card-content>
       <canvas #gewinnChart></canvas>
@@ -25,11 +25,14 @@
 
   <div padding>
     <ion-segment [(ngModel)]="pet">
-      <ion-segment-button value="kittens">
+      <ion-segment-button value="laufen">
         Laufen
       </ion-segment-button>
-      <ion-segment-button value="puppies">
-        Schwimmen
+      <ion-segment-button value="radfahren">
+        Radfahren
+      </ion-segment-button>
+      <ion-segment-button value="trailrunning">
+        Trailrunning
       </ion-segment-button>
     </ion-segment>
   </div>
@@ -42,10 +45,12 @@
     </ion-row>
   </ion-grid>
   <div [ngSwitch]="pet">
-    <div *ngSwitchCase="'puppies'">
+    <div *ngSwitchCase="'laufen'">
       <canvas #barChart></canvas>
     </div>
-    <div *ngSwitchCase="'kittens'">
+    <div *ngSwitchCase="'radfahren'">
+    </div>
+    <div *ngSwitchCase="'trailrunning'">
     </div>
   </div>
 </ion-content>

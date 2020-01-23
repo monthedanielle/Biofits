@@ -1,14 +1,14 @@
 webpackJsonp([5],{
 
-/***/ 705:
+/***/ 708:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SettingPageModule", function() { return SettingPageModule; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SignInPageModule", function() { return SignInPageModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(62);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__setting__ = __webpack_require__(864);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(44);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__sign_in__ = __webpack_require__(868);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -18,34 +18,36 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 
 
-var SettingPageModule = /** @class */ (function () {
-    function SettingPageModule() {
+var SignInPageModule = /** @class */ (function () {
+    function SignInPageModule() {
     }
-    SettingPageModule = __decorate([
+    SignInPageModule = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["J" /* NgModule */])({
             declarations: [
-                __WEBPACK_IMPORTED_MODULE_2__setting__["a" /* SettingPage */],
+                __WEBPACK_IMPORTED_MODULE_2__sign_in__["a" /* SignInPage */],
             ],
             imports: [
-                __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__setting__["a" /* SettingPage */]),
+                __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__sign_in__["a" /* SignInPage */]),
             ],
         })
-    ], SettingPageModule);
-    return SettingPageModule;
+    ], SignInPageModule);
+    return SignInPageModule;
 }());
 
-//# sourceMappingURL=setting.module.js.map
+//# sourceMappingURL=sign-in.module.js.map
 
 /***/ }),
 
-/***/ 864:
+/***/ 868:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return SettingPage; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return SignInPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(62);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__app_app_component__ = __webpack_require__(351);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(44);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_forms__ = __webpack_require__(25);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_auth_auth__ = __webpack_require__(88);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__providers_alert_alert__ = __webpack_require__(89);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -58,60 +60,61 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-var SettingPage = /** @class */ (function () {
-    function SettingPage(_myApp, navCtrl, navParams) {
-        this._myApp = _myApp;
+
+
+var SignInPage = /** @class */ (function () {
+    function SignInPage(navCtrl, modalCtrl, formBuilder, authProvider, alertProvider, loadingController) {
         this.navCtrl = navCtrl;
-        this.navParams = navParams;
-        this.action = false;
-        this.item_stable = [
-            {
-                title: 'App Language',
-                item_accordinat: ["English", "Franch"]
-            },
-        ];
-        this.social = [
-            { icon_name: 'logo-facebook', name: 'facebook', color: "faceColor" },
-            { icon_name: 'logo-googleplus', name: 'goohle_pluse', color: "googleColor" },
-            { icon_name: 'logo-twitter', name: 'twitter', color: "twitterColor" },
-        ];
-        this.shownGroup = null;
-        this.action = this._myApp.animateVarible;
+        this.modalCtrl = modalCtrl;
+        this.formBuilder = formBuilder;
+        this.authProvider = authProvider;
+        this.alertProvider = alertProvider;
+        this.loadingController = loadingController;
+        this.error = false;
+        this.signInFormGroup = this.formBuilder.group({
+            username: ['', [__WEBPACK_IMPORTED_MODULE_2__angular_forms__["f" /* Validators */].required]],
+            password: ['', [__WEBPACK_IMPORTED_MODULE_2__angular_forms__["f" /* Validators */].required]]
+        });
     }
-    SettingPage.prototype.ionViewDidLoad = function () {
-        console.log('ionViewDidLoad BookmarksPage');
+    SignInPage.prototype.signIn = function (signInFormGroup) {
+        var _this = this;
+        this.loading = this.loadingController.create({ content: "Signing in, please wait..." });
+        this.loading.present();
+        this.authProvider.login(signInFormGroup.value.username, signInFormGroup.value.password).subscribe(function (result) {
+            _this.error = false;
+            _this.loading.dismissAll();
+            _this.alertProvider.shortAlert('Sign in successful!', false);
+            _this.openPage('LandPage');
+        }, function (error) {
+            _this.error = true;
+            _this.errorMessage = 'Could not sign in!\nPlease, check your credentials!';
+            _this.loading.dismissAll();
+            _this.alertProvider.middleAlert('Sign in failed', false);
+        });
     };
-    SettingPage.prototype.toggleGroup = function (group) {
-        if (this.isGroupShown(group)) {
-            this.shownGroup = null;
-        }
-        else {
-            this.shownGroup = group;
-        }
+    SignInPage.prototype.passwordModal = function () {
+        var modal = this.modalCtrl.create('PasswordPage');
+        modal.present();
     };
-    ;
-    SettingPage.prototype.isGroupShown = function (group) {
-        return this.shownGroup === group;
+    // go to another page
+    SignInPage.prototype.openPage = function (page) {
+        this.navCtrl.setRoot(page);
     };
-    ;
-    // select Language Function
-    SettingPage.prototype.select_lang = function (x, y) {
-        x.title = y;
-    };
-    SettingPage.prototype.animateApp = function (e) {
-        this._myApp.animateVarible = e.checked;
-        this.action = this._myApp.animateVarible;
-    };
-    SettingPage = __decorate([
+    SignInPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
-            selector: 'page-setting',template:/*ion-inline-start:"/home/nganya/Documents/Myanga/dev/software/biofits/src/pages/setting/setting.html"*/'\n<ion-header>\n  <ion-navbar>\n    <button ion-button menuToggle icon-only>\n      <ion-icon name="ios-menu"></ion-icon>\n    </button>\n    <ion-title>Setting</ion-title>\n    <ion-buttons end>\n      <button ion-button navPush="NotificationsPage" class="notification_Btn" >\n        <ion-icon name="ios-notifications"></ion-icon>\n        <ion-badge color="danger">2</ion-badge>\n      </button>\n    </ion-buttons>\n  </ion-navbar>\n</ion-header>\n<ion-content >\n  <ion-list>\n    <div class="accordinat_item" *ngFor="let x of item_stable ; let i=index" (click)="toggleGroup(i)">\n      <div padding class="itemStable">\n        <ion-item  padding>\n          <ion-icon name="ios-arrow-down" item-right color="color2"></ion-icon>\n          <p>{{x.title}}</p>\n        </ion-item>\n      </div>\n       <!-- list of Search name -->\n      <ion-list class="list_accordion" *ngIf="isGroupShown(i)">\n        <ion-item *ngFor="let y of x.item_accordinat" (click)="select_lang(x,y)"> \n          <p class="tit">{{y}}</p>\n        </ion-item>\n      </ion-list>\n    </div>\n  </ion-list>\n  <div class="connect_with">\n    <p>Connect With</p>\n    <!-- Social media radio buttons list -->\n    <ion-list radio-group class="social_media">\n      <ion-item *ngFor="let item of social">\n        <ion-label>\n          <button ion-button color="{{item.color}}">\n            <ion-icon name="{{item.icon_name}}"></ion-icon>\n          </button>\n        </ion-label>\n        <ion-radio  value="{{item.name}}"></ion-radio>\n      </ion-item>\n    </ion-list>\n  </div>\n  <div class="notify_me">\n    <p>Notify me with updates in :</p>\n    <!-- notify checkbox buttons list -->\n    <ion-list>\n      <ion-item>\n        <ion-label>Courses</ion-label>\n        <ion-checkbox [(ngModel)]="courses"></ion-checkbox>\n      </ion-item>\n      <ion-item>\n        <ion-label>Events</ion-label>\n        <ion-checkbox [(ngModel)]="events"></ion-checkbox>\n      </ion-item>\n      <ion-item>\n        <ion-label>News</ion-label>\n        <ion-checkbox [(ngModel)]="news"></ion-checkbox>\n      </ion-item>\n    </ion-list>\n  </div>\n  <div class="animate">\n    <ion-item>\n      <ion-label>Animation avilability</ion-label>\n      <ion-checkbox (ionChange)="animateApp($event)"  checked="{{action}}" [(ngModel)]="animate"></ion-checkbox>\n    </ion-item>\n  </div>\n</ion-content>\n'/*ion-inline-end:"/home/nganya/Documents/Myanga/dev/software/biofits/src/pages/setting/setting.html"*/,
+            selector: 'page-sign-in',template:/*ion-inline-start:"/home/nganya/Documents/programming/biofits/github/Biofits/front-end/src/pages/sign-in/sign-in.html"*/'<ion-header>\n  <ion-navbar>\n  </ion-navbar>\n</ion-header>\n\n<ion-content padding style="background-color: rgb(2, 109, 158)" class="sign">\n  <div class="logo">\n    <div class="logo">\n      <h3>Biofits</h3>\n      <p>Fit bleiben!</p>\n      <img src="assets/img/logo.png" />\n    </div>\n  </div>\n  <ion-label *ngIf="error">{{ errorMessage }}</ion-label>\n  <form [formGroup]="signInFormGroup" (ngSubmit)="signIn(signInFormGroup)">\n    <div class="appForm" margin-bottom>\n      <ion-list>\n        <ion-item>\n          <ion-icon name="ios-mail-outline" item-left></ion-icon>\n          <ion-input formControlName="username" type="email" placeholder="Mail"></ion-input>\n        </ion-item>\n        <ion-item>\n          <ion-icon name="ios-lock-outline" item-left></ion-icon>\n          <ion-input formControlName="password" type="password" placeholder="Password"></ion-input>\n        </ion-item>\n      </ion-list>\n    </div>\n    <button ion-button block color="color2" margin-top type="submit">Anmelden</button>\n  </form>\n  <p class="forgot" (click)="passwordModal()">Passwort vergessen?</p>\n\n</ion-content>'/*ion-inline-end:"/home/nganya/Documents/programming/biofits/github/Biofits/front-end/src/pages/sign-in/sign-in.html"*/,
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2__app_app_component__["a" /* MyApp */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* NavParams */]])
-    ], SettingPage);
-    return SettingPage;
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* NavController */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* ModalController */],
+            __WEBPACK_IMPORTED_MODULE_2__angular_forms__["a" /* FormBuilder */],
+            __WEBPACK_IMPORTED_MODULE_3__providers_auth_auth__["a" /* AuthProvider */],
+            __WEBPACK_IMPORTED_MODULE_4__providers_alert_alert__["a" /* AlertProvider */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* LoadingController */]])
+    ], SignInPage);
+    return SignInPage;
 }());
 
-//# sourceMappingURL=setting.js.map
+//# sourceMappingURL=sign-in.js.map
 
 /***/ })
 

@@ -78,7 +78,8 @@ public class AktivitaetSnapshotService {
 
         snapshot = aktivitaetSnapshotRepository.save(snapshot);
 
-        aktivitaet.setDistanz(aktivitaet.getDistanz() + distanz);
+        aktivitaet.setDistanz(aktivitaetSnapshotRepository.findByAktivitaetIdOrderByDatumDesc(aktivitaet.getId()).stream()
+                .map(e -> e.getDistanz()).reduce((double) 0, Double::sum));
 
         aktivitaetRepository.save(aktivitaet);
 

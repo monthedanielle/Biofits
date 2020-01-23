@@ -1,15 +1,15 @@
 webpackJsonp([1],{
 
-/***/ 694:
+/***/ 696:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "LessonsPageModule", function() { return LessonsPageModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(62);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__lessons__ = __webpack_require__(853);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_ionic2_rating__ = __webpack_require__(711);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(44);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__lessons__ = __webpack_require__(855);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_ionic2_rating__ = __webpack_require__(713);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -40,7 +40,7 @@ var LessonsPageModule = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 709:
+/***/ 711:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -224,13 +224,13 @@ var Ionic2Rating = (function () {
 
 /***/ }),
 
-/***/ 711:
+/***/ 713:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ionic2_rating_module__ = __webpack_require__(712);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ionic2_rating_module__ = __webpack_require__(714);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return __WEBPACK_IMPORTED_MODULE_0__ionic2_rating_module__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ionic2_rating__ = __webpack_require__(709);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ionic2_rating__ = __webpack_require__(711);
 /* unused harmony reexport Ionic2Rating */
 
 
@@ -238,15 +238,15 @@ var Ionic2Rating = (function () {
 
 /***/ }),
 
-/***/ 712:
+/***/ 714:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return Ionic2RatingModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_common__ = __webpack_require__(43);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(62);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic2_rating__ = __webpack_require__(709);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_common__ = __webpack_require__(45);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(44);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic2_rating__ = __webpack_require__(711);
 
 
 
@@ -279,13 +279,13 @@ var Ionic2RatingModule = (function () {
 
 /***/ }),
 
-/***/ 853:
+/***/ 855:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return LessonsPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(62);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(44);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -315,7 +315,7 @@ var LessonsPage = /** @class */ (function () {
     };
     LessonsPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
-            selector: 'page-lessons',template:/*ion-inline-start:"/home/nganya/Documents/Myanga/dev/software/biofits/src/pages/lessons/lessons.html"*/'<ion-header>\n  <ion-navbar>\n    <ion-title>lessons</ion-title>\n    <ion-buttons end>\n      <button ion-button navPush="NotificationsPage" class="notification_Btn">\n        <ion-icon name="ios-notifications"></ion-icon>\n        <ion-badge color="danger">2</ion-badge>\n      </button>\n    </ion-buttons>\n  </ion-navbar>\n</ion-header>\n\n<ion-content >\n  <ion-grid class="lesson_grid">\n    <ion-row>\n      <ion-col col-12 col-md-6 col-lg-4 col-xl-3 *ngFor="let item of lessons" navPush=\'LessonDetailsPage\'>\n        <ion-item>\n          <ion-thumbnail item-start>\n            <img src="{{item.img}}">\n          </ion-thumbnail>\n          <!-- leason name -->\n          <h5>{{item.name}}</h5>\n\n          <ion-grid>\n            <!-- description content -->\n            <ion-row class="row1">\n              <ion-col col-12>\n                <p class="tit">Description : </p>\n              </ion-col>\n              <ion-col col-12>\n                <p class="description">is simply dummy text of the printing and typesetting industry.</p>\n              </ion-col>\n            </ion-row>\n            <!-- cost content -->\n            <ion-row class="row2">\n              <ion-col col-auto>\n                <p class="tit">Foreigners Cost : </p>\n              </ion-col>\n              <ion-col col>\n                <p class="cost">{{item.cost}} $</p>\n              </ion-col>\n            </ion-row>\n            <!-- rating , likes and time -->\n            <ion-row class="row3">\n              <ion-col col-auto>\n                <rating [(ngModel)]="item.rate" class="ratingGroup"  \n                  readOnly="false" \n                  max="5" \n                  emptyStarIconName="ios-star-outline" \n                  starIconName="ios-star" \n                  nullable="false" \n                  ></rating>\n              </ion-col>\n\n              <ion-col col>\n                <ion-icon name="md-time" color="color2"></ion-icon>\n                <p>120 h</p>\n              </ion-col>\n\n              <ion-col col>\n                <ion-icon name="md-heart" color="danger"></ion-icon>\n                <p>32</p>\n              </ion-col>\n            </ion-row>\n          </ion-grid>\n\n        </ion-item>\n      </ion-col>\n    </ion-row>\n  </ion-grid>\n</ion-content>\n'/*ion-inline-end:"/home/nganya/Documents/Myanga/dev/software/biofits/src/pages/lessons/lessons.html"*/,
+            selector: 'page-lessons',template:/*ion-inline-start:"/home/nganya/Documents/programming/biofits/github/Biofits/front-end/src/pages/lessons/lessons.html"*/'<ion-header>\n  <ion-navbar>\n    <ion-title>lessons</ion-title>\n    <ion-buttons end>\n      <button ion-button navPush="NotificationsPage" class="notification_Btn">\n        <ion-icon name="ios-notifications"></ion-icon>\n        <ion-badge color="danger">2</ion-badge>\n      </button>\n    </ion-buttons>\n  </ion-navbar>\n</ion-header>\n\n<ion-content >\n  <ion-grid class="lesson_grid">\n    <ion-row>\n      <ion-col col-12 col-md-6 col-lg-4 col-xl-3 *ngFor="let item of lessons" navPush=\'LessonDetailsPage\' [navParams]="item">\n        <ion-item>\n          <ion-thumbnail item-start>\n            <img src="{{item.img}}">\n          </ion-thumbnail>\n          <!-- leason name -->\n          <h5>{{item.name}}</h5>\n\n          <ion-grid>\n            <!-- description content -->\n            <ion-row class="row1">\n              <ion-col col-12>\n                <p class="tit">Description : </p>\n              </ion-col>\n              <ion-col col-12>\n                <p class="description">is simply dummy text of the printing and typesetting industry.</p>\n              </ion-col>\n            </ion-row>\n            <!-- cost content -->\n            <ion-row class="row2">\n              <ion-col col-auto>\n                <p class="tit">Foreigners Cost : </p>\n              </ion-col>\n              <ion-col col>\n                <p class="cost">{{item.cost}} $</p>\n              </ion-col>\n            </ion-row>\n            <!-- rating , likes and time -->\n            <ion-row class="row3">\n              <ion-col col-auto>\n                <rating [(ngModel)]="item.rate" class="ratingGroup"  \n                  readOnly="false" \n                  max="5" \n                  emptyStarIconName="ios-star-outline" \n                  starIconName="ios-star" \n                  nullable="false" \n                  ></rating>\n              </ion-col>\n\n              <ion-col col>\n                <ion-icon name="md-time" color="color2"></ion-icon>\n                <p>120 h</p>\n              </ion-col>\n\n              <ion-col col>\n                <ion-icon name="md-heart" color="danger"></ion-icon>\n                <p>32</p>\n              </ion-col>\n            </ion-row>\n          </ion-grid>\n\n        </ion-item>\n      </ion-col>\n    </ion-row>\n  </ion-grid>\n</ion-content>\n'/*ion-inline-end:"/home/nganya/Documents/programming/biofits/github/Biofits/front-end/src/pages/lessons/lessons.html"*/,
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* NavParams */]])
     ], LessonsPage);

@@ -16,7 +16,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpModule } from '@angular/http';
 import { HTTP_INTERCEPTORS, HttpClientModule, HttpClient } from '@angular/common/http';
 import { SportArtProvider } from '../providers/sport-art/sport-art';
-import { Geolocation } from '@ionic-native/geolocation/ngx';
+import { Geolocation } from '@ionic-native/geolocation';
+import { HttpConfigInterceptor } from '../interceptors/httpConfig.interceptor';
 
 var config = {
       backButtonText: '',
@@ -52,7 +53,13 @@ var config = {
     AlertProvider,
     AuthProvider,
     StringUtilsProvider,
-    SportArtProvider
+    SportArtProvider,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: HttpConfigInterceptor,
+      multi: true
+    },
+    Geolocation
   ]
 })
 export class AppModule {}

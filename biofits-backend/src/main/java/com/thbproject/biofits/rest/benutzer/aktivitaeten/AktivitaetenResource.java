@@ -79,7 +79,7 @@ public class AktivitaetenResource {
         aktivitaetService.stop(benutzerId, sportArtId);
     }
 
-    @RequestMapping(path = "/sport-art/{sportArtId}/list", method = RequestMethod.GET)
+    @RequestMapping(path = "/sport-art/{sportArtId}/list", method = RequestMethod.POST)
     @Produces(MediaType.APPLICATION_JSON)
     public JsonNode list(
             @RequestBody @Valid AktivitaetCriteria criteria,
